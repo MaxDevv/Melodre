@@ -1,0 +1,16 @@
+https://tonejs.github.io/audio/salamander/A0.mp3
+https://tonejs.github.io/audio/salamander/C1.mp3
+https://tonejs.github.io/audio/salamander/A1.mp3
+https://tonejs.github.io/audio/salamander/C2.mp3
+https://tonejs.github.io/audio/salamander/A2.mp3
+https://tonejs.github.io/audio/salamander/C3.mp3
+https://tonejs.github.io/audio/salamander/A3.mp3
+https://tonejs.github.io/audio/salamander/C4.mp3
+https://tonejs.github.io/audio/salamander/A4.mp3
+https://tonejs.github.io/audio/salamander/C5.mp3
+https://tonejs.github.io/audio/salamander/A5.mp3
+https://tonejs.github.io/audio/salamander/C6.mp3
+https://tonejs.github.io/audio/salamander/A6.mp3
+https://tonejs.github.io/audio/salamander/C7.mp3
+https://tonejs.github.io/audio/salamander/A7.mp3
+https://tonejs.github.io/audio/salamander/C8.mp3

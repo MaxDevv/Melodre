@@ -1,0 +1,4 @@
+Working Idea:
+    Button generates and plays melody 8 notes long, tells user starting note, then asks user to type in the note that were played, if user gets more than 75% accuracy they win, and browser is unlocked, the user is given their accuracy and the true melody is revealed, howver if the user gets less than 75% accuracy, theyre merely told their accuracy.
+    Add video game addicton principles, random rewards, currency system, energy system, e.t.c
+    
