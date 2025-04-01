@@ -103,7 +103,7 @@
         score = Math.floor(score);
         
         if (avgDiff == 0) {
-            bonusTrigger(20*noteInputs.length);
+            bonusTrigger(20*noteInputs.length, "100% accurate");
             score += 20*noteInputs.length;
         }
         pointHistory.push(score);
@@ -224,11 +224,15 @@
         playSound();
     }
 
-    function bonusTrigger(bonus = 50) {
+    function bonusTrigger(bonus = 50, message=undefined) {
+        elementValues.bonusMessage = message;
         elementValues.bonusPoints = bonus;
         elementValues.bonus = true;
         compliment = compliments[Math.floor(Math.random()*compliments.length)];
-        setTimeout(() => {elementValues.bonus = false}, 1500);
+        setTimeout(() => {
+            elementValues.bonus = false;
+            elementValues.bonusMessage = undefined;
+        }, 2000);
         elementValues.bonusSfx.play();
     }
 
@@ -305,7 +309,11 @@
             .catch(error => {
                 console.error('Error loading sound effect:', error);
             });
-        document.addEventListener("click", soundEffect);
+            document.addEventListener("click", soundEffect);
+            document.addEventListener("click", () => {
+                elementValues.clickAnim = true;
+                setTimeout(() => {elementValues.clickAnim = false h}, 100)
+            });
         document.addEventListener("touchstart", soundEffect);
         document.addEventListener("keydown", soundEffect);
         // document.addEventListener("keyup", soundEffect);
@@ -363,7 +371,7 @@
 {/each}
 
 {#if elementValues.bonus}
-    <div class="bonus overlay">
+    <div class="bonus overlay bottomMessage">
         --------
         <br>
         {compliment}
@@ -373,6 +381,14 @@
         --------
     </div>
 {/if}
+
+{#if (elementValues.bonusMessage && elementValues.bonus)}
+    <div class="overlay bonus topMessage">
+        -==- {elementValues.bonusMessage} -==-
+    </div>
+{/if}
+
+<div class="cursorTracker"></div>
 <div class="overlay vignette  {elementValues.timerEnding ? "timerEnding" : ""}"></div>
 {#if elementValues.timeLeft < 0 && !elementValues.hideMenu}
     <div class="menuScreen">
@@ -502,13 +518,21 @@
         font-weight: bolder;
         /* color: var(--color-brown); */
         text-align: center;
+        text-transform: uppercase;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: end;
-        animation: bonusIn 0.3s, flicker 0.1s steps(2) infinite, fadeOut 0.5s 1s forwards;
+        animation: bonusIn 0.3s, flicker 0.1s steps(2) infinite, fadeOut 0.5s 1.5s forwards;
     }
-
+    .bottomMessage {
+        justify-content: end;
+        margin-bottom: 0.5em;
+    }
+    .topMessage {
+        margin-top: 1em;
+        /* margin-bottom: 1em !important; */
+        justify-content: start;
+    }
     
     @keyframes expand {
         from {
@@ -759,5 +783,26 @@
         /* visibility: hidden !important;
         opacity: 0% !important; */
         animation: redFlicker 1s infinite !important;
+    }
+
+    .cursorTracker {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        background-color: var(--color-accent);
+        opacity: 40% !important;
+        border-width: 3px;
+        border-color: var(--color-light);
+        box-shadow: 0px 0px 10px 4px var(--color-light);
+        pointer-events: none;
+    }
+    .clickAnimClass {
+        animation: clickAnim 0.1s linear;
+    }
+
+    @keyframes clickAnim {
+        50% {
+            transform: scale(2, 2);
+        }
     }
 </style>
