@@ -1,0 +1,846 @@
+## System Info
+
+* code-server: 1.96.2 (08cbdfbdf11925e8a14ee03de97b942bba7e8a94)
+* OS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3.1 Safari/605.1.15(5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3.1 Safari/605.1.15)
+* VM(likelihood): 0%
+* Initial Startup: false
+* Has 0 other windows
+* Screen Reader Active: false
+* Empty Workspace: false
+
+## Performance Marks
+
+| What                                                               | Duration | Process                   | Info                                                                     |
+| ------------------------------------------------------------------ | -------- | ------------------------- | ------------------------------------------------------------------------ |
+| start => app.isReady                                               | -        | [main]                    | initial startup: false                                                   |
+| nls:start => nls:end                                               | -        | [main]                    | initial startup: false                                                   |
+| import(main.js)                                                    | -        | [main]                    | initial startup: false                                                   |
+| run main.js                                                        | -        | [main]                    | initial startup: false                                                   |
+| start crash reporter                                               | -        | [main]                    | initial startup: false                                                   |
+| serve main IPC handle                                              | -        | [main]                    | initial startup: false                                                   |
+| create window                                                      | -        | [main]                    | initial startup: false,                                                  |
+| app.isReady => window.loadUrl()                                    | -        | [main]                    | initial startup: false                                                   |
+| window.loadUrl() => begin to import(workbench.desktop.main.js)     | 0        | [main->renderer]          | NewWindow                                                                |
+| import(workbench.desktop.main.js)                                  | 2176     | [renderer]                | cached data: NO                                                          |
+| wait for window config                                             | 0        | [renderer]                | -                                                                        |
+| init storage (global & workspace)                                  | 283      | [renderer]                | -                                                                        |
+| init workspace service                                             | 2458     | [renderer]                | -                                                                        |
+| init settings and global state from settings sync service          | 0        | [renderer]                | -                                                                        |
+| init keybindings, snippets & extensions from settings sync service | 0        | [renderer]                | -                                                                        |
+| register extensions & spawn extension host                         | 3149     | [renderer]                | -                                                                        |
+| restore viewlet                                                    | 105      | [renderer]                | workbench.view.explorer                                                  |
+| restore panel                                                      | 86       | [renderer]                | terminal                                                                 |
+| restore & resolve visible editors                                  | 10490    | [renderer]                | 2: workbench.editors.gettingStartedInput, workbench.editors.webviewInput |
+| create workbench contributions                                     | 68       | [renderer]                | 68 blocking startup                                                      |
+| overall workbench load                                             | 11433    | [renderer]                | -                                                                        |
+| workbench ready                                                    | 8721     | [main->renderer]          | -                                                                        |
+| renderer ready                                                     | 18362    | [renderer]                | -                                                                        |
+| shared process connection ready                                    | 0        | [renderer->sharedprocess] | -                                                                        |
+| extensions registered                                              | 1679     | [renderer]                | -                                                                        |
+
+## Extension Activation Stats
+
+| Extension                         | Eager | Load Code | Call Activate | Finish Activate | Event                           | By                                |
+| --------------------------------- | ----- | --------- | ------------- | --------------- | ------------------------------- | --------------------------------- |
+| vscode.git                        | true  | 156       | 15            | 52              | *                               | vscode.git                        |
+| vscode.git-base                   | true  | 8         | 0             | 12              | *                               | vscode.git                        |
+| vscode.github                     | true  | 211       | 6             | 0               | *                               | vscode.github                     |
+| vscode.npm                        | true  | 43        | 0             | 6               | workspaceContains:package.json  | vscode.npm                        |
+| Gruntfuggly.remembrall            | true  | 20        | 10            | 2               | *                               | Gruntfuggly.remembrall            |
+| WakaTime.vscode-wakatime          | true  | 106       | 2             | 0               | *                               | WakaTime.vscode-wakatime          |
+| vscode.configuration-editing      | false | 25        | 1             | 0               | onLanguage:json                 | vscode.configuration-editing      |
+| vscode.debug-auto-launch          | false | 7         | 1             | 203             | onStartupFinished               | vscode.debug-auto-launch          |
+| vscode.emmet                      | false | 463       | 156           | 0               | onLanguage                      | vscode.emmet                      |
+| vscode.extension-editing          | false | 149       | 7             | 156             | onLanguage:markdown             | vscode.extension-editing          |
+| vscode.github-authentication      | false | 377       | 14            | 0               | onAuthenticationRequest:github  | vscode.github-authentication      |
+| vscode.json-language-features     | false | 145       | 0             | 304             | onLanguage:json                 | vscode.json-language-features     |
+| vscode.markdown-language-features | false | 213       | 31            | 226             | onWebviewPanel:markdown.preview | vscode.markdown-language-features |
+| vscode.markdown-math              | false | 31        | 0             | 0               | api                             | vscode.markdown-language-features |
+| vscode.merge-conflict             | false | 42        | 42            | 161             | onStartupFinished               | vscode.merge-conflict             |
+| ms-python.python                  | false | 635       | 44            | 977             | onLanguage:python               | ms-python.python                  |
+| sourcegraph.cody-ai               | false | 3363      | 161           | 405             | onStartupFinished               | sourcegraph.cody-ai               |
+
+## Terminal Stats
+
+| Name                                       | Timestamp     | Delta | Total |
+| ------------------------------------------ | ------------- | ----- | ----- |
+| code/terminal/willGetTerminalBackend       | 1742343137728 | 0     | 0     |
+| code/terminal/didGetTerminalBackend        | 1742343140472 | 2744  | 2744  |
+| code/terminal/willReconnect                | 1742343140472 | 0     | 2744  |
+| code/terminal/willGetTerminalLayoutInfo    | 1742343140473 | 1     | 2745  |
+| code/terminal/willRecreateTerminalGroups   | 1742343141910 | 1437  | 4182  |
+| code/terminal/didGetTerminalLayoutInfo     | 1742343141910 | 0     | 4182  |
+| code/terminal/willRecreateTerminal/4-24932 | 1742343141911 | 1     | 4183  |
+| code/terminal/willGetProfiles              | 1742343141912 | 1     | 4184  |
+| code/terminal/didGetProfiles               | 1742343145554 | 3642  | 7826  |
+| code/terminal/didRecreateTerminal/4-24932  | 1742343145892 | 338   | 8164  |
+| code/terminal/didRecreateTerminalGroups    | 1742343145894 | 2     | 8166  |
+| code/terminal/willGetPerformanceMarks      | 1742343145895 | 1     | 8167  |
+| code/terminal/willReplay                   | 1742343145895 | 0     | 8167  |
+| code/terminal/didReconnect                 | 1742343145895 | 0     | 8167  |
+| code/terminal/didReplay                    | 1742343145895 | 0     | 8167  |
+
+## Workbench Contributions Blocking Restore
+
+* Total (LifecyclePhase.Starting): 34 (33ms)
+* Total (LifecyclePhase.Ready): 39 (35ms)
+
+| Name                                                                                                | Timestamp     | Delta | Total |
+| --------------------------------------------------------------------------------------------------- | ------------- | ----- | ----- |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.navigableContainerManager                  | 1742343136878 | 0     | 0     |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.extensionPoints                            | 1742343136878 | 0     | 0     |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.navigableContainerManager                   | 1742343136878 | 0     | 0     |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.preferencesActions                         | 1742343136879 | 1     | 1     |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.viewsExtensionHandler                      | 1742343136879 | 0     | 1     |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.extensionPoints                             | 1742343136879 | 0     | 1     |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.viewsExtensionHandler                       | 1742343136879 | 0     | 1     |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.preferences                                | 1742343136887 | 8     | 9     |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.preferencesActions                          | 1742343136887 | 0     | 9     |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.preferences                                 | 1742343136888 | 1     | 10    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.notebook                                   | 1742343136888 | 0     | 10    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.cellContentProvider                         | 1742343136889 | 1     | 11    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.notebook                                    | 1742343136889 | 0     | 11    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.cellContentProvider                        | 1742343136889 | 0     | 11    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.cellInfoContentProvider                    | 1742343136889 | 0     | 11    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.registerCellSchemas                        | 1742343136890 | 1     | 12    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.notebookMetadataContentProvider            | 1742343136890 | 0     | 12    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.cellInfoContentProvider                     | 1742343136890 | 0     | 12    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.notebookMetadataContentProvider             | 1742343136890 | 0     | 12    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.chatResolver                               | 1742343136891 | 1     | 13    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.registerCellSchemas                         | 1742343136891 | 0     | 13    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.chatExtensionPointHandler                  | 1742343136892 | 1     | 14    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.chatResolver                                | 1742343136892 | 0     | 14    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.explorerViewletViews                       | 1742343136895 | 3     | 17    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.chatViewsWelcomeHandler                    | 1742343136895 | 0     | 17    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.chatExtensionPointHandler                   | 1742343136895 | 0     | 17    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.chatViewsWelcomeHandler                     | 1742343136895 | 0     | 17    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.textFileSaveErrorHandler                   | 1742343136905 | 10    | 27    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.textFileEditorTracker                       | 1742343136905 | 0     | 27    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.textFileSaveErrorHandler                    | 1742343136905 | 0     | 27    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.fileUriLabel                                | 1742343136905 | 0     | 27    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.explorerViewletViews                        | 1742343136905 | 0     | 27    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.fileUriLabel                               | 1742343136905 | 0     | 27    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.dirtyFilesIndicator                        | 1742343136905 | 0     | 27    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.textFileEditorTracker                      | 1742343136905 | 0     | 27    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.dirtyFilesIndicator                         | 1742343136906 | 1     | 28    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.replacePreviewContentProvider               | 1742343136906 | 0     | 28    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.searchEditor                               | 1742343136906 | 0     | 28    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.scmMultiDiffSourceResolver                 | 1742343136906 | 0     | 28    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.multiDiffEditorResolver                    | 1742343136906 | 0     | 28    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.mergeEditorResolver                        | 1742343136906 | 0     | 28    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.replacePreviewContentProvider              | 1742343136906 | 0     | 28    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.mergeEditorResolver                         | 1742343136906 | 0     | 28    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.searchEditor                                | 1742343136906 | 0     | 28    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.multiDiffEditorResolver                     | 1742343136906 | 0     | 28    |
+| code/didCreateWorkbenchContribution/1/terminalMain                                                  | 1742343136907 | 1     | 29    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.remoteLabel                                | 1742343136907 | 0     | 29    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.webviewPanel                               | 1742343136907 | 0     | 29    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.scmMultiDiffSourceResolver                  | 1742343136907 | 0     | 29    |
+| code/willCreateWorkbenchContribution/1/terminalMain                                                 | 1742343136907 | 0     | 29    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.complexCustomWorkingCopyEditorHandler      | 1742343136907 | 0     | 29    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.complexCustomWorkingCopyEditorHandler       | 1742343136907 | 0     | 29    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.webviewPanel                                | 1742343136907 | 0     | 29    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.remoteStatusIndicator                      | 1742343136908 | 1     | 30    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.remoteInvalidWorkspaceDetector              | 1742343136908 | 0     | 30    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.remoteLabel                                 | 1742343136908 | 0     | 30    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.remoteInvalidWorkspaceDetector             | 1742343136908 | 0     | 30    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.listContext                                | 1742343136910 | 2     | 32    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.listContext                                 | 1742343136910 | 0     | 32    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.remoteStatusIndicator                       | 1742343136910 | 0     | 32    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.browserWorkingCopyBackupTracker             | 1742343136910 | 0     | 32    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.keyboardLayoutPicker                        | 1742343136910 | 0     | 32    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.dialogHandler                              | 1742343136910 | 0     | 32    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.keyboardLayoutPicker                       | 1742343136910 | 0     | 32    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.browserWorkingCopyBackupTracker            | 1742343136910 | 0     | 32    |
+| code/willCreateWorkbenchContribution/1/workbench.contrib.partsSplash                                | 1742343136910 | 0     | 32    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.dialogHandler                               | 1742343136910 | 0     | 32    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.textInputActionsProvider                   | 1742343136911 | 1     | 33    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.extensionUrlBootstrapHandler                | 1742343136911 | 0     | 33    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.editorAutoSave                             | 1742343136911 | 0     | 33    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.textInputActionsProvider                    | 1742343136911 | 0     | 33    |
+| code/didCreateWorkbenchContribution/1/workbench.contrib.partsSplash                                 | 1742343136911 | 0     | 33    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.extensionUrlBootstrapHandler               | 1742343136911 | 0     | 33    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.editorStatus                               | 1742343136912 | 1     | 34    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.editorAutoSave                              | 1742343136912 | 0     | 34    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.untitledTextEditorWorkingCopyEditorHandler | 1742343136913 | 1     | 35    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.editorStatus                                | 1742343136913 | 0     | 35    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.dynamicEditorConfigurations                | 1742343136914 | 1     | 36    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.untitledTextEditorWorkingCopyEditorHandler  | 1742343136914 | 0     | 36    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.textMateTokenizationInstantiator           | 1742343136914 | 0     | 36    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.dynamicEditorConfigurations                 | 1742343136914 | 0     | 36    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.treeSitterTokenizationInstantiator         | 1742343136917 | 3     | 39    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.textMateTokenizationInstantiator            | 1742343136917 | 0     | 39    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.notebookChatContribution                   | 1742343136918 | 1     | 40    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.treeSitterTokenizationInstantiator          | 1742343136918 | 0     | 40    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.notebookClipboard                          | 1742343136919 | 1     | 41    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.markerListProvider                         | 1742343136919 | 0     | 41    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.notebookChatContribution                    | 1742343136919 | 0     | 41    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.notebookClipboard                           | 1742343136919 | 0     | 41    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.notebook.multiCursorUndoRedo                | 1742343136919 | 0     | 41    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.notebook.multiCursorUndoRedo               | 1742343136919 | 0     | 41    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.simpleNotebookWorkingCopyEditorHandler      | 1742343136920 | 1     | 42    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.notebookLanguageSelectorScoreRefine        | 1742343136920 | 0     | 42    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.notebookEditorManager                      | 1742343136920 | 0     | 42    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.notebookLanguageSelectorScoreRefine         | 1742343136920 | 0     | 42    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.notebookUndoRedo                            | 1742343136920 | 0     | 42    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.simpleNotebookWorkingCopyEditorHandler     | 1742343136920 | 0     | 42    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.markerListProvider                          | 1742343136920 | 0     | 42    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.notebookUndoRedo                           | 1742343136920 | 0     | 42    |
+| code/willCreateWorkbenchContribution/2/chat.commandCenterRendering                                  | 1742343136920 | 0     | 42    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.toolsExtensionPointHandler                  | 1742343136920 | 0     | 42    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.toolsExtensionPointHandler                 | 1742343136920 | 0     | 42    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.notebookEditorManager                       | 1742343136920 | 0     | 42    |
+| code/willCreateWorkbenchContribution/2/workbench.chat.autoSaveDisabler                              | 1742343136921 | 1     | 43    |
+| code/didCreateWorkbenchContribution/2/chat.commandCenterRendering                                   | 1742343136921 | 0     | 43    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.interactiveDocument                        | 1742343136924 | 3     | 46    |
+| code/didCreateWorkbenchContribution/2/workbench.chat.autoSaveDisabler                               | 1742343136924 | 0     | 46    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.bulkEditPreview                            | 1742343136936 | 12    | 58    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.replWorkingCopyEditorHandler               | 1742343136936 | 0     | 58    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.fileEditorWorkingCopyEditorHandler          | 1742343136936 | 0     | 58    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.replDocument                                | 1742343136936 | 0     | 58    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.replWorkingCopyEditorHandler                | 1742343136936 | 0     | 58    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.replDocument                               | 1742343136936 | 0     | 58    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.fileEditorWorkingCopyEditorHandler         | 1742343136936 | 0     | 58    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.interactiveDocument                         | 1742343136936 | 0     | 58    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.showPortCandidate                          | 1742343136937 | 1     | 59    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.trustedDomainsFileSystemProvider           | 1742343136937 | 0     | 59    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.externalUriResolver                        | 1742343136937 | 0     | 59    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.trustedDomainsFileSystemProvider            | 1742343136937 | 0     | 59    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.bulkEditPreview                             | 1742343136937 | 0     | 59    |
+| code/didCreateWorkbenchContribution/2/comments.input.contentProvider                                | 1742343136937 | 0     | 59    |
+| code/willCreateWorkbenchContribution/2/comments.input.contentProvider                               | 1742343136937 | 0     | 59    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.externalUriResolver                         | 1742343136937 | 0     | 59    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.searchEditorWorkingCopyEditorHandler        | 1742343136937 | 0     | 59    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.tunnelFactory                              | 1742343136937 | 0     | 59    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.searchEditorWorkingCopyEditorHandler       | 1742343136937 | 0     | 59    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.showPortCandidate                           | 1742343136937 | 0     | 59    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.startupPageEditorResolver                  | 1742343136940 | 3     | 62    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.editorFeaturesInstantiator                 | 1742343136940 | 0     | 62    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.tunnelFactory                               | 1742343136940 | 0     | 62    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.startupPageEditorResolver                   | 1742343136940 | 0     | 62    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.userDataProfiles                           | 1742343136940 | 0     | 62    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.editorFeaturesInstantiator                  | 1742343136940 | 0     | 62    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.userDataProfiles                            | 1742343136943 | 3     | 65    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.localHistoryTimeline                       | 1742343136943 | 0     | 65    |
+| code/willCreateWorkbenchContribution/2/extensionAccessibilityHelpDialogContribution                 | 1742343136944 | 1     | 66    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.accessibilityStatus                         | 1742343136944 | 0     | 66    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.accessibilityStatus                        | 1742343136944 | 0     | 66    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.localHistoryTimeline                        | 1742343136944 | 0     | 66    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.workspaceTrustRequestHandler                | 1742343136944 | 0     | 66    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.workspaceTrustRequestHandler               | 1742343136944 | 0     | 66    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.updateExperimentalSettingsDefaults          | 1742343136945 | 1     | 67    |
+| code/didCreateWorkbenchContribution/2/workbench.contrib.browserRemoteConnectionFailureNotification  | 1742343136945 | 0     | 67    |
+| code/didCreateWorkbenchContribution/2/extensionAccessibilityHelpDialogContribution                  | 1742343136945 | 0     | 67    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.browserRemoteConnectionFailureNotification | 1742343136945 | 0     | 67    |
+| code/willCreateWorkbenchContribution/2/workbench.contrib.updateExperimentalSettingsDefaults         | 1742343136945 | 0     | 67    |
+
+## Raw Perf Marks: workerExtHost
+
+```
+Name	Timestamp	Delta	Total
+code/timeOrigin	1742343139306	0	0
+code/extHost/willConnectToRenderer	1742343140511	1205	1205
+code/extHost/didWaitForInitData	1742343141275	764	1969
+code/extHost/didCreateServices	1742343141297	22	1991
+code/extHost/willWaitForConfig	1742343141453	156	2147
+code/extHost/didWaitForConfig	1742343141795	342	2489
+code/extHost/didInitAPI	1742343141796	1	2490
+code/extHost/ready	1742343141917	121	2611
+```
+## Raw Perf Marks: server
+
+```
+Name	Timestamp	Delta	Total
+code/timeOrigin	1742314880861.191	0	0
+code/server/start	1742314884379	3517.80908203125	3517.80908203125
+code/willGenerateNls	1742314884380	1	3518.80908203125
+code/didGenerateNls	1742314884380	0	3518.80908203125
+code/willLoadNls	1742314884380	0	3518.80908203125
+code/didLoadNls	1742314884397	17	3535.80908203125
+code/server/codeLoaded	1742314884544	147	3682.80908203125
+code/registerFilesystem/file	1742314884565	21	3703.80908203125
+code/server/ready	1742314884881	316	4019.80908203125
+code/willGenerateNls	1742314885107	226	4245.80908203125
+code/didGenerateNls	1742314885107	0	4245.80908203125
+code/server/willScanExtensions	1742314891516	6409	10654.80908203125
+code/server/didScanExtensions	1742314892586	1070	11724.80908203125
+code/server/willScanExtensions	1742341217505	26324919	26336643.80908203
+code/server/didScanExtensions	1742341218070	565	26337208.80908203
+code/server/willScanExtensions	1742342472191	1254121	27591329.80908203
+code/server/didScanExtensions	1742342472893	702	27592031.80908203
+code/server/willScanExtensions	1742342509375	36482	27628513.80908203
+code/server/didScanExtensions	1742342509943	568	27629081.80908203
+code/server/willScanExtensions	1742342884475	374532	28003613.80908203
+code/server/didScanExtensions	1742342885119	644	28004257.80908203
+```
+## Raw Perf Marks: renderer
+
+```
+Name	Timestamp	Delta	Total
+code/timeOrigin	1742343128728	0	0
+code/didStartRenderer	1742343129665	937	937
+code/willLoadWorkbenchMain	1742343130500	835	1772
+code/didLoadWorkbenchMain	1742343132676	2176	3948
+code/willOpenDatabase/vscode-web-db	1742343132704	28	3976
+code/didOpenDatabase/vscode-web-db	1742343134066	1362	5338
+code/registerFilesystem/vscode-log	1742343134067	1	5339
+code/registerFilesystem/tmp	1742343134071	4	5343
+code/registerFilesystem/vscode-userdata	1742343134071	0	5343
+code/willResolveConnectionToken/codeserver.maximusadeola.com	1742343134114	43	5386
+code/willInitWorkspaceService	1742343134117	3	5389
+code/willOpenDatabase/vscode-web-state-db-global	1742343134119	2	5391
+code/willInitStorage	1742343134119	0	5391
+code/willOpenDatabase/vscode-web-state-db--6e6d63b1-247a9	1742343134119	0	5391
+code/didResolveConnectionToken/codeserver.maximusadeola.com	1742343134123	4	5395
+code/willInitUserConfiguration	1742343134131	8	5403
+code/willCreateSocket/Management	1742343134132	1	5404
+code/didOpenDatabase/vscode-web-state-db-global	1742343134222	90	5494
+code/didOpenDatabase/vscode-web-state-db--6e6d63b1-247a9	1742343134223	1	5495
+code/didInitStorage	1742343134402	179	5674
+code/didCreateSocketOK/Management	1742343135010	608	6282
+code/registerFilesystem/vscode-remote	1742343136149	1139	7421
+code/didInitUserConfiguration	1742343136418	269	7690
+code/willInitWorkspaceConfiguration	1742343136419	1	7691
+code/didInitWorkspaceConfiguration	1742343136574	155	7846
+code/didInitWorkspaceService	1742343136575	1	7847
+code/willStartWorkbench	1742343136594	19	7866
+code/LifecyclePhase/Ready	1742343136608	14	7880
+code/registerFilesystem/https	1742343136643	35	7915
+code/registerFilesystem/http	1742343136643	0	7915
+code/willCreateWorkbenchContributions/1	1742343136877	234	8149
+code/willCreateWorkbenchContribution/1/workbench.contrib.navigableContainerManager	1742343136878	1	8150
+code/willCreateWorkbenchContribution/1/workbench.contrib.extensionPoints	1742343136878	0	8150
+code/didCreateWorkbenchContribution/1/workbench.contrib.navigableContainerManager	1742343136878	0	8150
+code/willCreateWorkbenchContribution/1/workbench.contrib.preferencesActions	1742343136879	1	8151
+code/willCreateWorkbenchContribution/1/workbench.contrib.viewsExtensionHandler	1742343136879	0	8151
+code/didCreateWorkbenchContribution/1/workbench.contrib.extensionPoints	1742343136879	0	8151
+code/didCreateWorkbenchContribution/1/workbench.contrib.viewsExtensionHandler	1742343136879	0	8151
+code/willCreateWorkbenchContribution/1/workbench.contrib.preferences	1742343136887	8	8159
+code/registerFilesystem/vscode	1742343136887	0	8159
+code/didCreateWorkbenchContribution/1/workbench.contrib.preferencesActions	1742343136887	0	8159
+code/didCreateWorkbenchContribution/1/workbench.contrib.preferences	1742343136888	1	8160
+code/willCreateWorkbenchContribution/1/workbench.contrib.notebook	1742343136888	0	8160
+code/didCreateWorkbenchContribution/1/workbench.contrib.cellContentProvider	1742343136889	1	8161
+code/didCreateWorkbenchContribution/1/workbench.contrib.notebook	1742343136889	0	8161
+code/willCreateWorkbenchContribution/1/workbench.contrib.cellContentProvider	1742343136889	0	8161
+code/willCreateWorkbenchContribution/1/workbench.contrib.cellInfoContentProvider	1742343136889	0	8161
+code/willCreateWorkbenchContribution/1/workbench.contrib.registerCellSchemas	1742343136890	1	8162
+code/willCreateWorkbenchContribution/1/workbench.contrib.notebookMetadataContentProvider	1742343136890	0	8162
+code/didCreateWorkbenchContribution/1/workbench.contrib.cellInfoContentProvider	1742343136890	0	8162
+code/didCreateWorkbenchContribution/1/workbench.contrib.notebookMetadataContentProvider	1742343136890	0	8162
+code/willCreateWorkbenchContribution/1/workbench.contrib.chatResolver	1742343136891	1	8163
+code/didCreateWorkbenchContribution/1/workbench.contrib.registerCellSchemas	1742343136891	0	8163
+code/willCreateWorkbenchContribution/1/workbench.contrib.chatExtensionPointHandler	1742343136892	1	8164
+code/didCreateWorkbenchContribution/1/workbench.contrib.chatResolver	1742343136892	0	8164
+code/willCreateWorkbenchContribution/1/workbench.contrib.explorerViewletViews	1742343136895	3	8167
+code/willCreateWorkbenchContribution/1/workbench.contrib.chatViewsWelcomeHandler	1742343136895	0	8167
+code/didCreateWorkbenchContribution/1/workbench.contrib.chatExtensionPointHandler	1742343136895	0	8167
+code/didCreateWorkbenchContribution/1/workbench.contrib.chatViewsWelcomeHandler	1742343136895	0	8167
+code/willCreateWorkbenchContribution/1/workbench.contrib.textFileSaveErrorHandler	1742343136905	10	8177
+code/didCreateWorkbenchContribution/1/workbench.contrib.textFileEditorTracker	1742343136905	0	8177
+code/didCreateWorkbenchContribution/1/workbench.contrib.textFileSaveErrorHandler	1742343136905	0	8177
+code/didCreateWorkbenchContribution/1/workbench.contrib.fileUriLabel	1742343136905	0	8177
+code/didCreateWorkbenchContribution/1/workbench.contrib.explorerViewletViews	1742343136905	0	8177
+code/willCreateWorkbenchContribution/1/workbench.contrib.fileUriLabel	1742343136905	0	8177
+code/willCreateWorkbenchContribution/1/workbench.contrib.dirtyFilesIndicator	1742343136905	0	8177
+code/willCreateWorkbenchContribution/1/workbench.contrib.textFileEditorTracker	1742343136905	0	8177
+code/didCreateWorkbenchContribution/1/workbench.contrib.dirtyFilesIndicator	1742343136906	1	8178
+code/didCreateWorkbenchContribution/1/workbench.contrib.replacePreviewContentProvider	1742343136906	0	8178
+code/willCreateWorkbenchContribution/1/workbench.contrib.searchEditor	1742343136906	0	8178
+code/willCreateWorkbenchContribution/1/workbench.contrib.scmMultiDiffSourceResolver	1742343136906	0	8178
+code/willCreateWorkbenchContribution/1/workbench.contrib.multiDiffEditorResolver	1742343136906	0	8178
+code/willCreateWorkbenchContribution/1/workbench.contrib.mergeEditorResolver	1742343136906	0	8178
+code/willCreateWorkbenchContribution/1/workbench.contrib.replacePreviewContentProvider	1742343136906	0	8178
+code/didCreateWorkbenchContribution/1/workbench.contrib.mergeEditorResolver	1742343136906	0	8178
+code/didCreateWorkbenchContribution/1/workbench.contrib.searchEditor	1742343136906	0	8178
+code/didCreateWorkbenchContribution/1/workbench.contrib.multiDiffEditorResolver	1742343136906	0	8178
+code/didCreateWorkbenchContribution/1/terminalMain	1742343136907	1	8179
+code/willCreateWorkbenchContribution/1/workbench.contrib.remoteLabel	1742343136907	0	8179
+code/willCreateWorkbenchContribution/1/workbench.contrib.webviewPanel	1742343136907	0	8179
+code/didCreateWorkbenchContribution/1/workbench.contrib.scmMultiDiffSourceResolver	1742343136907	0	8179
+code/willCreateWorkbenchContribution/1/terminalMain	1742343136907	0	8179
+code/willCreateWorkbenchContribution/1/workbench.contrib.complexCustomWorkingCopyEditorHandler	1742343136907	0	8179
+code/didCreateWorkbenchContribution/1/workbench.contrib.complexCustomWorkingCopyEditorHandler	1742343136907	0	8179
+code/didCreateWorkbenchContribution/1/workbench.contrib.webviewPanel	1742343136907	0	8179
+code/willCreateWorkbenchContribution/1/workbench.contrib.remoteStatusIndicator	1742343136908	1	8180
+code/didCreateWorkbenchContribution/1/workbench.contrib.remoteInvalidWorkspaceDetector	1742343136908	0	8180
+code/didCreateWorkbenchContribution/1/workbench.contrib.remoteLabel	1742343136908	0	8180
+code/willCreateWorkbenchContribution/1/workbench.contrib.remoteInvalidWorkspaceDetector	1742343136908	0	8180
+code/willCreateWorkbenchContribution/1/workbench.contrib.listContext	1742343136910	2	8182
+code/didCreateWorkbenchContribution/1/workbench.contrib.listContext	1742343136910	0	8182
+code/didCreateWorkbenchContribution/1/workbench.contrib.remoteStatusIndicator	1742343136910	0	8182
+code/didCreateWorkbenchContribution/1/workbench.contrib.browserWorkingCopyBackupTracker	1742343136910	0	8182
+code/didCreateWorkbenchContribution/1/workbench.contrib.keyboardLayoutPicker	1742343136910	0	8182
+code/willCreateWorkbenchContribution/1/workbench.contrib.dialogHandler	1742343136910	0	8182
+code/willCreateWorkbenchContribution/1/workbench.contrib.keyboardLayoutPicker	1742343136910	0	8182
+code/willCreateWorkbenchContribution/1/workbench.contrib.browserWorkingCopyBackupTracker	1742343136910	0	8182
+code/willCreateWorkbenchContribution/1/workbench.contrib.partsSplash	1742343136910	0	8182
+code/didCreateWorkbenchContribution/1/workbench.contrib.dialogHandler	1742343136910	0	8182
+code/willCreateWorkbenchContribution/2/workbench.contrib.textInputActionsProvider	1742343136911	1	8183
+code/didCreateWorkbenchContribution/2/workbench.contrib.extensionUrlBootstrapHandler	1742343136911	0	8183
+code/willCreateWorkbenchContribution/2/workbench.contrib.editorAutoSave	1742343136911	0	8183
+code/didCreateWorkbenchContribution/2/workbench.contrib.textInputActionsProvider	1742343136911	0	8183
+code/didCreateWorkbenchContributions/1	1742343136911	0	8183
+code/didCreateWorkbenchContribution/1/workbench.contrib.partsSplash	1742343136911	0	8183
+code/willCreateWorkbenchContribution/2/workbench.contrib.extensionUrlBootstrapHandler	1742343136911	0	8183
+code/willCreateWorkbenchContributions/2	1742343136911	0	8183
+code/willCreateWorkbenchContribution/2/workbench.contrib.editorStatus	1742343136912	1	8184
+code/didCreateWorkbenchContribution/2/workbench.contrib.editorAutoSave	1742343136912	0	8184
+code/willCreateWorkbenchContribution/2/workbench.contrib.untitledTextEditorWorkingCopyEditorHandler	1742343136913	1	8185
+code/didCreateWorkbenchContribution/2/workbench.contrib.editorStatus	1742343136913	0	8185
+code/willCreateWorkbenchContribution/2/workbench.contrib.dynamicEditorConfigurations	1742343136914	1	8186
+code/didCreateWorkbenchContribution/2/workbench.contrib.untitledTextEditorWorkingCopyEditorHandler	1742343136914	0	8186
+code/willCreateWorkbenchContribution/2/workbench.contrib.textMateTokenizationInstantiator	1742343136914	0	8186
+code/didCreateWorkbenchContribution/2/workbench.contrib.dynamicEditorConfigurations	1742343136914	0	8186
+code/willCreateWorkbenchContribution/2/workbench.contrib.treeSitterTokenizationInstantiator	1742343136917	3	8189
+code/didCreateWorkbenchContribution/2/workbench.contrib.textMateTokenizationInstantiator	1742343136917	0	8189
+code/willCreateWorkbenchContribution/2/workbench.contrib.notebookChatContribution	1742343136918	1	8190
+code/didCreateWorkbenchContribution/2/workbench.contrib.treeSitterTokenizationInstantiator	1742343136918	0	8190
+code/willCreateWorkbenchContribution/2/workbench.contrib.notebookClipboard	1742343136919	1	8191
+code/willCreateWorkbenchContribution/2/workbench.contrib.markerListProvider	1742343136919	0	8191
+code/didCreateWorkbenchContribution/2/workbench.contrib.notebookChatContribution	1742343136919	0	8191
+code/didCreateWorkbenchContribution/2/workbench.contrib.notebookClipboard	1742343136919	0	8191
+code/didCreateWorkbenchContribution/2/workbench.contrib.notebook.multiCursorUndoRedo	1742343136919	0	8191
+code/willCreateWorkbenchContribution/2/workbench.contrib.notebook.multiCursorUndoRedo	1742343136919	0	8191
+code/didCreateWorkbenchContribution/2/workbench.contrib.simpleNotebookWorkingCopyEditorHandler	1742343136920	1	8192
+code/willCreateWorkbenchContribution/2/workbench.contrib.notebookLanguageSelectorScoreRefine	1742343136920	0	8192
+code/willCreateWorkbenchContribution/2/workbench.contrib.notebookEditorManager	1742343136920	0	8192
+code/didCreateWorkbenchContribution/2/workbench.contrib.notebookLanguageSelectorScoreRefine	1742343136920	0	8192
+code/didCreateWorkbenchContribution/2/workbench.contrib.notebookUndoRedo	1742343136920	0	8192
+code/willCreateWorkbenchContribution/2/workbench.contrib.simpleNotebookWorkingCopyEditorHandler	1742343136920	0	8192
+code/didCreateWorkbenchContribution/2/workbench.contrib.markerListProvider	1742343136920	0	8192
+code/willCreateWorkbenchContribution/2/workbench.contrib.notebookUndoRedo	1742343136920	0	8192
+code/willCreateWorkbenchContribution/2/chat.commandCenterRendering	1742343136920	0	8192
+code/didCreateWorkbenchContribution/2/workbench.contrib.toolsExtensionPointHandler	1742343136920	0	8192
+code/willCreateWorkbenchContribution/2/workbench.contrib.toolsExtensionPointHandler	1742343136920	0	8192
+code/didCreateWorkbenchContribution/2/workbench.contrib.notebookEditorManager	1742343136920	0	8192
+code/willCreateWorkbenchContribution/2/workbench.chat.autoSaveDisabler	1742343136921	1	8193
+code/didCreateWorkbenchContribution/2/chat.commandCenterRendering	1742343136921	0	8193
+code/willCreateWorkbenchContribution/2/workbench.contrib.interactiveDocument	1742343136924	3	8196
+code/didCreateWorkbenchContribution/2/workbench.chat.autoSaveDisabler	1742343136924	0	8196
+code/willCreateWorkbenchContribution/2/workbench.contrib.bulkEditPreview	1742343136936	12	8208
+code/willCreateWorkbenchContribution/2/workbench.contrib.replWorkingCopyEditorHandler	1742343136936	0	8208
+code/didCreateWorkbenchContribution/2/workbench.contrib.fileEditorWorkingCopyEditorHandler	1742343136936	0	8208
+code/didCreateWorkbenchContribution/2/workbench.contrib.replDocument	1742343136936	0	8208
+code/didCreateWorkbenchContribution/2/workbench.contrib.replWorkingCopyEditorHandler	1742343136936	0	8208
+code/willCreateWorkbenchContribution/2/workbench.contrib.replDocument	1742343136936	0	8208
+code/willCreateWorkbenchContribution/2/workbench.contrib.fileEditorWorkingCopyEditorHandler	1742343136936	0	8208
+code/didCreateWorkbenchContribution/2/workbench.contrib.interactiveDocument	1742343136936	0	8208
+code/registerFilesystem/trustedDomains	1742343136937	1	8209
+code/willCreateWorkbenchContribution/2/workbench.contrib.showPortCandidate	1742343136937	0	8209
+code/willCreateWorkbenchContribution/2/workbench.contrib.trustedDomainsFileSystemProvider	1742343136937	0	8209
+code/willCreateWorkbenchContribution/2/workbench.contrib.externalUriResolver	1742343136937	0	8209
+code/didCreateWorkbenchContribution/2/workbench.contrib.trustedDomainsFileSystemProvider	1742343136937	0	8209
+code/didCreateWorkbenchContribution/2/workbench.contrib.bulkEditPreview	1742343136937	0	8209
+code/didCreateWorkbenchContribution/2/comments.input.contentProvider	1742343136937	0	8209
+code/willCreateWorkbenchContribution/2/comments.input.contentProvider	1742343136937	0	8209
+code/didCreateWorkbenchContribution/2/workbench.contrib.externalUriResolver	1742343136937	0	8209
+code/didCreateWorkbenchContribution/2/workbench.contrib.searchEditorWorkingCopyEditorHandler	1742343136937	0	8209
+code/willCreateWorkbenchContribution/2/workbench.contrib.tunnelFactory	1742343136937	0	8209
+code/willCreateWorkbenchContribution/2/workbench.contrib.searchEditorWorkingCopyEditorHandler	1742343136937	0	8209
+code/didCreateWorkbenchContribution/2/workbench.contrib.showPortCandidate	1742343136937	0	8209
+code/willCreateWorkbenchContribution/2/workbench.contrib.startupPageEditorResolver	1742343136940	3	8212
+code/willCreateWorkbenchContribution/2/workbench.contrib.editorFeaturesInstantiator	1742343136940	0	8212
+code/didCreateWorkbenchContribution/2/workbench.contrib.tunnelFactory	1742343136940	0	8212
+code/didCreateWorkbenchContribution/2/workbench.contrib.startupPageEditorResolver	1742343136940	0	8212
+code/willCreateWorkbenchContribution/2/workbench.contrib.userDataProfiles	1742343136940	0	8212
+code/didCreateWorkbenchContribution/2/workbench.contrib.editorFeaturesInstantiator	1742343136940	0	8212
+code/didCreateWorkbenchContribution/2/workbench.contrib.userDataProfiles	1742343136943	3	8215
+code/willCreateWorkbenchContribution/2/workbench.contrib.localHistoryTimeline	1742343136943	0	8215
+code/willCreateWorkbenchContribution/2/extensionAccessibilityHelpDialogContribution	1742343136944	1	8216
+code/registerFilesystem/vscode-local-history	1742343136944	0	8216
+code/didCreateWorkbenchContribution/2/workbench.contrib.accessibilityStatus	1742343136944	0	8216
+code/willCreateWorkbenchContribution/2/workbench.contrib.accessibilityStatus	1742343136944	0	8216
+code/didCreateWorkbenchContribution/2/workbench.contrib.localHistoryTimeline	1742343136944	0	8216
+code/didCreateWorkbenchContribution/2/workbench.contrib.workspaceTrustRequestHandler	1742343136944	0	8216
+code/willCreateWorkbenchContribution/2/workbench.contrib.workspaceTrustRequestHandler	1742343136944	0	8216
+code/didCreateWorkbenchContribution/2/workbench.contrib.updateExperimentalSettingsDefaults	1742343136945	1	8217
+code/didCreateWorkbenchContribution/2/workbench.contrib.browserRemoteConnectionFailureNotification	1742343136945	0	8217
+code/didCreateWorkbenchContribution/2/extensionAccessibilityHelpDialogContribution	1742343136945	0	8217
+code/willCreateWorkbenchContribution/2/workbench.contrib.browserRemoteConnectionFailureNotification	1742343136945	0	8217
+code/didCreateWorkbenchContributions/2	1742343136945	0	8217
+code/willCreateWorkbenchContribution/2/workbench.contrib.updateExperimentalSettingsDefaults	1742343136945	0	8217
+code/willCreatePart/workbench.parts.titlebar	1742343137136	191	8408
+code/didRemovePartsSplash	1742343137148	12	8420
+code/didCreatePart/workbench.parts.titlebar	1742343137202	54	8474
+code/willCreatePart/workbench.parts.banner	1742343137203	1	8475
+code/didCreatePart/workbench.parts.banner	1742343137203	0	8475
+code/willCreatePart/workbench.parts.activitybar	1742343137203	0	8475
+code/didCreatePart/workbench.parts.activitybar	1742343137224	21	8496
+code/willCreatePart/workbench.parts.sidebar	1742343137224	0	8496
+code/willCreatePart/workbench.parts.editor	1742343137226	2	8498
+code/didCreatePart/workbench.parts.sidebar	1742343137226	0	8498
+code/willCreatePart/workbench.parts.panel	1742343137331	105	8603
+code/didCreatePart/workbench.parts.editor	1742343137331	0	8603
+code/willCreatePart/workbench.parts.auxiliarybar	1742343137340	9	8612
+code/didCreatePart/workbench.parts.panel	1742343137340	0	8612
+code/didCreatePart/workbench.parts.auxiliarybar	1742343137348	8	8620
+code/willCreatePart/workbench.parts.statusbar	1742343137348	0	8620
+code/didCreatePart/workbench.parts.statusbar	1742343137354	6	8626
+code/willRestoreEditors	1742343137536	182	8808
+code/willRestoreViewlet	1742343137701	165	8973
+code/willRestorePanel	1742343137720	19	8992
+code/terminal/willGetTerminalBackend	1742343137728	8	9000
+code/restoreEditors/editorGroupsReady	1742343137805	77	9077
+code/didRestorePanel	1742343137806	1	9078
+code/didRestoreViewlet	1742343137806	0	9078
+code/restoreEditors/editorsToOpenResolved	1742343137807	1	9079
+code/willRegisterExplorerViews	1742343137808	1	9080
+code/willResolveExplorer	1742343137831	23	9103
+code/didRegisterExplorerViews	1742343137835	4	9107
+code/willLoadExtensions	1742343137836	1	9108
+code/willCreateSocket/ExtensionHost	1742343137881	45	9153
+code/didCreateSocketOK/ExtensionHost	1742343138854	973	10126
+code/LifecyclePhase/Restored	1742343139896	1042	11168
+code/willCreateWorkbenchContributions/3	1742343139909	13	11181
+code/willCreateWorkbenchContribution/3/workbench.contrib.dynamicWorkbenchSecurityConfiguration	1742343139954	45	11226
+code/didCreateWorkbenchContribution/3/workbench.contrib.dynamicWorkbenchSecurityConfiguration	1742343139956	2	11228
+code/willCreateWorkbenchContribution/3/workbench.contrib.editorWordWrapContextKeyTracker	1742343139963	7	11235
+code/didCreateWorkbenchContribution/3/workbench.contrib.editorWordWrapContextKeyTracker	1742343139965	2	11237
+code/willCreateWorkbenchContribution/3/notebook.contrib.editorStatus	1742343139977	12	11249
+code/didCreateWorkbenchContribution/3/notebook.contrib.editorStatus	1742343139978	1	11250
+code/willCreateWorkbenchContribution/3/workbench.chat.editorSaving	1742343139984	6	11256
+code/didCreateWorkbenchContribution/3/workbench.chat.editorSaving	1742343139984	0	11256
+code/willCreateWorkbenchContribution/3/inlineChat.enabler	1742343139985	1	11257
+code/didCreateWorkbenchContribution/3/inlineChat.enabler	1742343139985	0	11257
+code/willCreateWorkbenchContribution/3/workbench.contrib.workspaceWatcher	1742343139986	1	11258
+code/didCreateWorkbenchContribution/3/workbench.contrib.workspaceWatcher	1742343139987	1	11259
+code/willCreateWorkbenchContribution/3/workbench.contrib.scmWorkingSets	1742343140054	67	11326
+code/didCreateWorkbenchContribution/3/workbench.contrib.scmWorkingSets	1742343140054	0	11326
+code/didCreateWorkbenchContribution/3/debug.replAccessibilityAnnouncer	1742343140064	10	11336
+code/willCreateWorkbenchContribution/3/debug.replAccessibilityAnnouncer	1742343140064	0	11336
+code/willCreateWorkbenchContribution/3/workbench.contrib.debugWatchAccessibilityAnnouncer	1742343140206	142	11478
+code/didCreateWorkbenchContribution/3/workbench.contrib.debugWatchAccessibilityAnnouncer	1742343140208	2	11480
+code/willCreateWorkbenchContribution/3/remoteTerminalBackend	1742343140456	248	11728
+code/didCreateWorkbenchContribution/3/remoteTerminalBackend	1742343140457	1	11729
+code/willCreateWorkbenchContribution/3/terminalChat.enabler	1742343140457	0	11729
+code/didCreateWorkbenchContribution/3/terminalAutoReplies	1742343140457	0	11729
+code/willCreateWorkbenchContribution/3/terminalAutoReplies	1742343140457	0	11729
+code/didCreateWorkbenchContribution/3/terminalChat.enabler	1742343140458	1	11730
+code/willCreateWorkbenchContribution/3/taskRegistryContribution	1742343140460	2	11732
+code/didCreateWorkbenchContribution/3/taskRegistryContribution	1742343140460	0	11732
+code/terminal/didGetTerminalBackend	1742343140472	12	11744
+code/terminal/willReconnect	1742343140472	0	11744
+code/terminal/willGetTerminalLayoutInfo	1742343140473	1	11745
+code/didCreateWorkbenchContribution/3/workbench.contrib.startupPageRunner	1742343140501	28	11773
+code/didCreateWorkbenchContribution/3/workbench.contrib.workspacePlatform	1742343140501	0	11773
+code/willCreateWorkbenchContribution/3/workbench.contrib.startupPageRunner	1742343140501	0	11773
+code/willCreateWorkbenchContribution/3/workbench.contrib.workspacePlatform	1742343140501	0	11773
+code/willCreateWorkbenchContribution/3/workbench.contrib.authentication	1742343140502	1	11774
+code/willCreateWorkbenchContribution/3/status.languageStatus	1742343140502	0	11774
+code/didCreateWorkbenchContribution/3/status.languageStatus	1742343140502	0	11774
+code/didCreateWorkbenchContribution/3/workbench.contrib.authentication	1742343140503	1	11775
+code/willCreateWorkbenchContribution/3/EditorTextPropertySignalsContribution	1742343140505	2	11777
+code/willCreateWorkbenchContribution/3/AccessibilitySignalLineDebuggerContribution	1742343140507	2	11779
+code/didCreateWorkbenchContribution/3/AccessibilitySignalLineDebuggerContribution	1742343140507	0	11779
+code/didCreateWorkbenchContribution/3/EditorTextPropertySignalsContribution	1742343140507	0	11779
+code/willCreateWorkbenchContribution/3/workbench.contrib.saveAccessibilitySignal	1742343140508	1	11780
+code/didCreateWorkbenchContribution/3/workbench.contrib.saveAccessibilitySignal	1742343140508	0	11780
+code/willCreateWorkbenchContribution/3/workbench.contrib.speechAccessibilitySignal	1742343140508	0	11780
+code/didCreateWorkbenchContribution/3/workbench.contrib.speechAccessibilitySignal	1742343140509	1	11781
+code/didCreateWorkbenchContribution/3/workbench.contrib.dynamicSpeechAccessibilityConfiguration	1742343140551	42	11823
+code/willCreateWorkbenchContribution/3/workbench.contrib.dynamicSpeechAccessibilityConfiguration	1742343140551	0	11823
+code/willCreateWorkbenchContribution/3/workbench.contrib.diffEditorActiveAnnouncement	1742343140551	0	11823
+code/didCreateWorkbenchContribution/3/workbench.contrib.diffEditorActiveAnnouncement	1742343140551	0	11823
+code/didCreateWorkbenchContributions/3	1742343140558	7	11830
+code/willHandleExtensionPoints	1742343140687	129	11959
+code/willHandleExtensionPoint/jsonValidation	1742343140687	0	11959
+code/didHandleExtensionPoint/jsonValidation	1742343140689	2	11961
+code/willHandleExtensionPoint/colors	1742343140689	0	11961
+code/didHandleExtensionPoint/colors	1742343140691	2	11963
+code/willHandleExtensionPoint/icons	1742343140691	0	11963
+code/willHandleExtensionPoint/semanticTokenScopes	1742343140693	2	11965
+code/didHandleExtensionPoint/icons	1742343140693	0	11965
+code/willHandleExtensionPoint/languages	1742343140695	2	11967
+code/didHandleExtensionPoint/semanticTokenScopes	1742343140695	0	11967
+code/didHandleExtensionPoint/languages	1742343140708	13	11980
+code/willHandleExtensionPoint/snippets	1742343140708	0	11980
+code/willHandleExtensionPoint/taskDefinitions	1742343140709	1	11981
+code/didHandleExtensionPoint/snippets	1742343140709	0	11981
+code/willHandleExtensionPoint/authentication	1742343140713	4	11985
+code/didHandleExtensionPoint/taskDefinitions	1742343140713	0	11985
+code/willHandleExtensionPoint/commands	1742343140714	1	11986
+code/didHandleExtensionPoint/authentication	1742343140714	0	11986
+code/willHandleExtensionPoint/submenus	1742343140719	5	11991
+code/didHandleExtensionPoint/commands	1742343140719	0	11991
+code/willHandleExtensionPoint/menus	1742343140720	1	11992
+code/didHandleExtensionPoint/submenus	1742343140720	0	11992
+code/willHandleExtensionPoint/configurationDefaults	1742343140739	19	12011
+code/didHandleExtensionPoint/menus	1742343140739	0	12011
+code/willHandleExtensionPoint/configuration	1742343140740	1	12012
+code/didHandleExtensionPoint/configurationDefaults	1742343140740	0	12012
+code/didHandleExtensionPoint/configuration	1742343140778	38	12050
+code/willHandleExtensionPoint/viewsContainers	1742343140778	0	12050
+code/didHandleExtensionPoint/viewsContainers	1742343140808	30	12080
+code/willHandleExtensionPoint/views	1742343140808	0	12080
+code/willHandleExtensionPoint/keybindings	1742343140813	5	12085
+code/didHandleExtensionPoint/views	1742343140813	0	12085
+code/didHandleExtensionPoint/keybindings	1742343140826	13	12098
+code/willHandleExtensionPoint/themes	1742343140826	0	12098
+code/willHandleExtensionPoint/iconThemes	1742343140827	1	12099
+code/didHandleExtensionPoint/iconThemes	1742343140827	0	12099
+code/didHandleExtensionPoint/themes	1742343140827	0	12099
+code/willHandleExtensionPoint/grammars	1742343140827	0	12099
+code/didHandleExtensionPoint/grammars	1742343140831	4	12103
+code/willHandleExtensionPoint/notebooks	1742343140831	0	12103
+code/didHandleExtensionPoint/notebooks	1742343140832	1	12104
+code/willHandleExtensionPoint/notebookRenderer	1742343140832	0	12104
+code/willHandleExtensionPoint/debuggers	1742343140834	2	12106
+code/didHandleExtensionPoint/notebookRenderer	1742343140834	0	12106
+code/didHandleExtensionPoint/debuggers	1742343140843	9	12115
+code/didHandleExtensionPoint/breakpoints	1742343140843	0	12115
+code/willHandleExtensionPoint/customEditors	1742343140843	0	12115
+code/willHandleExtensionPoint/breakpoints	1742343140843	0	12115
+code/didHandleExtensionPoint/customEditors	1742343140844	1	12116
+code/willHandleExtensionPoint/terminalQuickFixes	1742343140844	0	12116
+code/didHandleExtensionPoint/terminalQuickFixes	1742343140844	0	12116
+code/willHandleExtensionPoint/problemPatterns	1742343140844	0	12116
+code/didHandleExtensionPoint/terminal	1742343140844	0	12116
+code/willHandleExtensionPoint/terminal	1742343140844	0	12116
+code/willHandleExtensionPoint/problemMatchers	1742343140845	1	12117
+code/didHandleExtensionPoint/problemPatterns	1742343140845	0	12117
+code/didHandleExtensionPoint/problemMatchers	1742343140846	1	12118
+code/willHandleExtensionPoint/walkthroughs	1742343140846	0	12118
+code/willHandleExtensionPoint/viewsWelcome	1742343140847	1	12119
+code/didHandleExtensionPoint/walkthroughs	1742343140847	0	12119
+code/didHandleExtensionPoints	1742343140848	1	12120
+code/willHandleExtensionPoint/continueEditSession	1742343140848	0	12120
+code/didHandleExtensionPoint/viewsWelcome	1742343140848	0	12120
+code/didHandleExtensionPoint/continueEditSession	1742343140848	0	12120
+code/didLoadExtensions	1742343140985	137	12257
+code/terminal/willRecreateTerminalGroups	1742343141910	925	13182
+code/terminal/didGetTerminalLayoutInfo	1742343141910	0	13182
+code/terminal/willRecreateTerminal/4-24932	1742343141911	1	13183
+code/terminal/willGetProfiles	1742343141912	1	13184
+code/LifecyclePhase/Eventually	1742343142517	605	13789
+code/willCreateWorkbenchContributions/4	1742343142526	9	13798
+code/willCreateWorkbenchContribution/4/workbench.contrib.configurationMigration	1742343142528	2	13800
+code/didCreateWorkbenchContribution/4/workbench.contrib.configurationMigration	1742343142552	24	13824
+code/willCreateWorkbenchContribution/4/workbench.contrib.dynamicWindowConfiguration	1742343142573	21	13845
+code/didCreateWorkbenchContribution/4/workbench.contrib.dynamicWindowConfiguration	1742343142639	66	13911
+code/willCreateWorkbenchContribution/4/workbench.contrib.chatSlashStaticSlashCommands	1742343142863	224	14135
+code/didCreateWorkbenchContribution/4/workbench.contrib.chatSlashStaticSlashCommands	1742343142864	1	14136
+code/willCreateWorkbenchContribution/4/workbench.contrib.chatCompatNotifier	1742343142864	0	14136
+code/didCreateWorkbenchContribution/4/workbench.contrib.chatCompatNotifier	1742343142865	1	14137
+code/willCreateWorkbenchContribution/4/chat.implicitContext	1742343142865	0	14137
+code/didCreateWorkbenchContribution/4/chat.implicitContext	1742343142867	2	14139
+code/willCreateWorkbenchContribution/4/chat.relatedFilesWorkingSet	1742343142867	0	14139
+code/didCreateWorkbenchContribution/4/chat.relatedFilesWorkingSet	1742343142868	1	14140
+code/willCreateWorkbenchContribution/4/workbench.contrib.chatGettingStarted	1742343142868	0	14140
+code/willCreateWorkbenchContribution/4/chat.quotasStatusBarEntry	1742343142869	1	14141
+code/didCreateWorkbenchContribution/4/workbench.contrib.chatGettingStarted	1742343142869	0	14141
+code/didCreateWorkbenchContribution/4/chat.quotasStatusBarEntry	1742343142870	1	14142
+code/didCreateWorkbenchContribution/4/terminalWslRecommendation	1742343143251	381	14523
+code/willCreateWorkbenchContribution/4/terminalWslRecommendation	1742343143251	0	14523
+code/didCreateWorkbenchContribution/4/workbench.contrib.authenticationUsage	1742343143254	3	14526
+code/willCreateWorkbenchContribution/4/workbench.contrib.authenticationUsage	1742343143254	0	14526
+code/willCreateWorkbenchContribution/4/workbench.contrib.syncScrolling	1742343144118	864	15390
+code/willCreateWorkbenchContribution/4/workbench.contrib.dropOrPasteInto	1742343144122	4	15394
+code/didCreateWorkbenchContribution/4/workbench.contrib.syncScrolling	1742343144122	0	15394
+code/didCreateWorkbenchContribution/4/workbench.contrib.dropOrPasteInto	1742343144123	1	15395
+code/willCreateWorkbenchContribution/4/workbench.contrib.dropOrPasteIntoSchema	1742343144123	0	15395
+code/didCreateWorkbenchContribution/4/workbench.contrib.dropOrPasteIntoSchema	1742343144129	6	15401
+code/didCreateWorkbenchContributions/4	1742343144765	636	16037
+code/didResolveExplorer	1742343145376	611	16648
+code/terminal/didGetProfiles	1742343145554	178	16826
+code/terminal/didRecreateTerminal/4-24932	1742343145892	338	17164
+code/terminal/didRecreateTerminalGroups	1742343145894	2	17166
+code/terminal/willGetPerformanceMarks	1742343145895	1	17167
+code/terminal/willReplay	1742343145895	0	17167
+code/terminal/didReconnect	1742343145895	0	17167
+code/terminal/didReplay	1742343145895	0	17167
+code/willResolveTextFileEditorModel	1742343147776	1881	19048
+code/didRestoreEditors	1742343148026	250	19298
+code/restoreEditors/editorGroupsRestored	1742343148026	0	19298
+code/didStartWorkbench	1742343148027	1	19299
+```
+## Raw Perf Marks: remotePtyHost
+
+```
+Name	Timestamp	Delta	Total
+code/timeOrigin	1742314897096.457	0	0
+code/fork/start	1742314897482	385.54296875	385.54296875
+code/willLoadNls	1742314897502	20	405.54296875
+code/didLoadNls	1742314897597	95	500.54296875
+code/willGetTerminalLayoutInfo	1742341219656	26322059	26322559.54296875
+code/willBuildProcessDetails/1	1742341219667	11	26322570.54296875
+code/didBuildProcessDetails/1	1742341223672	4005	26326575.54296875
+code/didGetTerminalLayoutInfo	1742341223672	0	26326575.54296875
+code/willGetTerminalLayoutInfo	1742342474307	1250635	27577210.54296875
+code/willBuildProcessDetails/4	1742342474307	0	27577210.54296875
+code/didBuildProcessDetails/4	1742342478312	4005	27581215.54296875
+code/didGetTerminalLayoutInfo	1742342478312	0	27581215.54296875
+code/willGetTerminalLayoutInfo	1742342512658	34346	27615561.54296875
+code/willBuildProcessDetails/4	1742342512658	0	27615561.54296875
+code/didBuildProcessDetails/4	1742342512664	6	27615567.54296875
+code/didGetTerminalLayoutInfo	1742342512664	0	27615567.54296875
+code/willGetTerminalLayoutInfo	1742342887225	374561	27990128.54296875
+code/willBuildProcessDetails/4	1742342887225	0	27990128.54296875
+code/didBuildProcessDetails/4	1742342887230	5	27990133.54296875
+code/didGetTerminalLayoutInfo	1742342887230	0	27990133.54296875
+code/willGetTerminalLayoutInfo	1742343140617	253387	28243520.54296875
+code/willBuildProcessDetails/4	1742343140617	0	28243520.54296875
+code/didBuildProcessDetails/4	1742343140620	3	28243523.54296875
+code/didGetTerminalLayoutInfo	1742343140620	0	28243523.54296875
+```
+## Raw Perf Marks: remoteExtHost
+
+```
+Name	Timestamp	Delta	Total
+code/timeOrigin	1742343139532.644	0	0
+code/fork/start	1742343139633	100.35595703125	100.35595703125
+code/willLoadNls	1742343139633	0	100.35595703125
+code/didLoadNls	1742343139659	26	126.35595703125
+code/extHost/willConnectToRenderer	1742343140116	457	583.35595703125
+code/extHost/didConnectToRenderer	1742343140130	14	597.35595703125
+code/extHost/didWaitForInitData	1742343142467	2337	2934.35595703125
+code/extHost/didCreateServices	1742343142494	27	2961.35595703125
+code/extHost/willWaitForConfig	1742343142600	106	3067.35595703125
+code/extHost/didWaitForConfig	1742343144252	1652	4719.35595703125
+code/extHost/didInitAPI	1742343144252	0	4719.35595703125
+code/extHost/didInitProxyResolver	1742343144265	13	4732.35595703125
+code/extHost/ready	1742343144265	0	4732.35595703125
+code/extHost/willLoadExtensionCode/vscode.markdown-language-features	1742343144268	3	4735.35595703125
+code/extHost/didLoadExtensionCode/vscode.markdown-language-features	1742343144480	212	4947.35595703125
+code/extHost/willActivateExtension/vscode.markdown-language-features	1742343144977	497	5444.35595703125
+code/extHost/didActivateExtension/vscode.markdown-language-features	1742343145236	259	5703.35595703125
+code/extHost/willLoadExtensionCode/vscode.git-base	1742343145240	4	5707.35595703125
+code/extHost/didLoadExtensionCode/vscode.git-base	1742343145244	4	5711.35595703125
+code/extHost/willLoadExtensionCode/Gruntfuggly.remembrall	1742343145244	0	5711.35595703125
+code/extHost/didLoadExtensionCode/Gruntfuggly.remembrall	1742343145257	13	5724.35595703125
+code/extHost/willLoadExtensionCode/WakaTime.vscode-wakatime	1742343145257	0	5724.35595703125
+code/extHost/didLoadExtensionCode/WakaTime.vscode-wakatime	1742343145343	86	5810.35595703125
+code/extHost/willLoadExtensionCode/vscode.npm	1742343145346	3	5813.35595703125
+code/extHost/didLoadExtensionCode/vscode.npm	1742343145388	42	5855.35595703125
+code/extHost/willActivateExtension/vscode.git-base	1742343147280	1892	7747.35595703125
+code/extHost/willActivateExtension/Gruntfuggly.remembrall	1742343147280	0	7747.35595703125
+code/extHost/willActivateExtension/WakaTime.vscode-wakatime	1742343147290	10	7757.35595703125
+code/extHost/didActivateExtension/vscode.git-base	1742343147292	2	7759.35595703125
+code/extHost/didActivateExtension/Gruntfuggly.remembrall	1742343147292	0	7759.35595703125
+code/extHost/didActivateExtension/WakaTime.vscode-wakatime	1742343147292	0	7759.35595703125
+code/extHost/willLoadExtensionCode/vscode.git	1742343147293	1	7760.35595703125
+code/extHost/didLoadExtensionCode/vscode.git	1742343147449	156	7916.35595703125
+code/extHost/willLoadExtensionCode/vscode.github	1742343147449	0	7916.35595703125
+code/extHost/didLoadExtensionCode/vscode.github	1742343147504	55	7971.35595703125
+code/extHost/willActivateExtension/vscode.npm	1742343147507	3	7974.35595703125
+code/extHost/didActivateExtension/vscode.npm	1742343147513	6	7980.35595703125
+code/extHost/willActivateExtension/vscode.git	1742343148134	621	8601.35595703125
+code/extHost/willActivateExtension/vscode.github	1742343148149	15	8616.35595703125
+code/extHost/didActivateExtension/vscode.github	1742343148155	6	8622.35595703125
+code/extHost/didActivateExtension/vscode.git	1742343148201	46	8668.35595703125
+```
+
+## Resource Timing Stats
+
+| Name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Duration           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| https://codeserver.maximusadeola.com/manifest.json                                                                                                                                                                                                                                                                                                                                                                                                                                    | 179.9999999999999  |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/vs/code/browser/workbench/workbench.css                                                                                                                                                                                                                                                                                                                                               | 708.9999999999999  |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/nls.messages.js                                                                                                                                                                                                                                                                                                                                                                       | 732                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/vs/code/browser/workbench/workbench.js                                                                                                                                                                                                                                                                                                                                                | 1303.0000000000005 |
+| https://codeserver.maximusadeola.com/mint-key                                                                                                                                                                                                                                                                                                                                                                                                                                         | 367.00000000000045 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/vsda/rust/web/vsda_bg.wasm                                                                                                                                                                                                                                                                                                                                                   | 474                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/vsda/rust/web/vsda.js                                                                                                                                                                                                                                                                                                                                                        | 484                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/vs/workbench/services/keybinding/browser/keyboardLayouts/layout.contribution.darwin.js                                                                                                                                                                                                                                                                                                | 381                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/media/codicon.ttf?5d4d76ab2ce5108968ad644d591a16a6                                                                                                                                                                                                                                                                                                                                    | 1058               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/media/code-icon.svg                                                                                                                                                                                                                                                                                                                                                                   | 1038               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/extensions/theme-seti/icons/seti.woff                                                                                                                                                                                                                                                                                                                                                     | 1024               |
+| https://codeserver.maximusadeola.com/update/check                                                                                                                                                                                                                                                                                                                                                                                                                                     | 906                |
+| https://codeserver.maximusadeola.com/_static/src/browser/media/templates.png                                                                                                                                                                                                                                                                                                                                                                                                          | 786                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-language-features%2Fmedia%2Fpreview-dark.svg&tkn=                                                                                                                                                                                                                                                  | 1162               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/vs/workbench/services/extensions/worker/webWorkerExtensionHostIframe.html?&vscodeWebWorkerExtHostId=ddc90f2f-ac98-4ee6-aa1c-1e165304667d                                                                                                                                                                                                                                              | 851                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsourcegraph.cody-ai-1.76.1-universal%2Fresources%2Fcody.svg&tkn=                                                                                                                                                                                                                                               | 1337               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fgruntfuggly.remembrall-1.0.7-universal%2Fresources%2Fremembrall-container.svg&tkn=                                                                                                                                                                                                                             | 1326               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Frangav.vscode-thunder-client-2.34.2-universal%2Fimages%2Fthunder-client.svg&tkn=                                                                                                                                                                                                                               | 1327               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftheme-defaults%2Fthemes%2Fdark_plus.json&tkn=                                                                                                                                                                                                                                                               | 1867               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fms-python.python-2025.2.0-universal%2Ficon.png&tkn=                                                                                                                                                                                                                                                            | 1840               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsourcegraph.cody-ai-1.76.1-universal%2Fresources%2Fsourcegraph.png&tkn=                                                                                                                                                                                                                                        | 1124               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftheme-seti%2Ficons%2Fvs-seti-icon-theme.json&tkn=                                                                                                                                                                                                                                                           | 1798               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftheme-defaults%2Fthemes%2Fdark_vs.json&tkn=                                                                                                                                                                                                                                                                 | 535                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftheme-seti%2Ficons%2Fseti.woff&tkn=                                                                                                                                                                                                                                                                         | 321.9999999999982  |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/@xterm/xterm/lib/xterm.js                                                                                                                                                                                                                                                                                                                                                    | 416                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/@xterm/addon-unicode11/lib/addon-unicode11.js                                                                                                                                                                                                                                                                                                                                | 702                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/@xterm/addon-clipboard/lib/addon-clipboard.js                                                                                                                                                                                                                                                                                                                                | 693.0000000000036  |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/@xterm/addon-webgl/lib/addon-webgl.js                                                                                                                                                                                                                                                                                                                                        | 442.99999999999636 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/out/vs/workbench/contrib/webview/browser/pre/index.html?id=881766c3-2782-4eb2-91a6-d78c1fe24c16&origin=0cb7ef24-4d50-48c2-87c4-73af2e49c103&swVersion=4&extensionId=vscode.markdown-language-features&platform=browser&vscode-resource-base-authority=vscode-resource.vscode-cdn.net&parentOrigin=https%3A%2F%2Fcodeserver.maximusadeola.com&remoteAuthority=codeserver.maximusadeola.com | 1064               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/vscode-textmate/release/main.js                                                                                                                                                                                                                                                                                                                                              | 881                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/vscode-oniguruma/release/main.js                                                                                                                                                                                                                                                                                                                                             | 878                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/static/node_modules/vscode-oniguruma/release/onig.wasm                                                                                                                                                                                                                                                                                                                                           | 875                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-basics%2Flanguage-configuration.json&tkn=                                                                                                                                                                                                                                                          | 914                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-basics%2Fsyntaxes%2Fmarkdown.tmLanguage.json&tkn=                                                                                                                                                                                                                                                  | 358.99999999999636 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fyaml%2Fsyntaxes%2Fyaml.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10820.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fhtml%2Fsyntaxes%2Fhtml-derivative.tmLanguage.json&tkn=                                                                                                                                                                                                                                                      | 10829              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fcss%2Fsyntaxes%2Fcss.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10825              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fhtml%2Fsyntaxes%2Fhtml.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10793              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fini%2Fsyntaxes%2Fini.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10784.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjava%2Fsyntaxes%2Fjava.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10828.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flua%2Fsyntaxes%2Flua.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10792.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmake%2Fsyntaxes%2Fmake.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10785              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fperl%2Fsyntaxes%2Fperl.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10778              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fr%2Fsyntaxes%2Fr.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                       | 10772              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fruby%2Fsyntaxes%2Fruby.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10724.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fphp%2Fsyntaxes%2Fphp.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10785              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fsql%2Fsyntaxes%2Fsql.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10753.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fvb%2Fsyntaxes%2Fasp-vb-net.tmLanguage.json&tkn=                                                                                                                                                                                                                                                             | 10741.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fxml%2Fsyntaxes%2Fxml.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10736              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fxml%2Fsyntaxes%2Fxsl.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10729.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fbat%2Fsyntaxes%2Fbatchfile.tmLanguage.json&tkn=                                                                                                                                                                                                                                                             | 10722.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fclojure%2Fsyntaxes%2Fclojure.tmLanguage.json&tkn=                                                                                                                                                                                                                                                           | 10718              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fcoffeescript%2Fsyntaxes%2Fcoffeescript.tmLanguage.json&tkn=                                                                                                                                                                                                                                                 | 10711.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fcpp%2Fsyntaxes%2Fc.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                     | 10721              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fcpp%2Fsyntaxes%2Fcpp.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10853              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fdiff%2Fsyntaxes%2Fdiff.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10697              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fdocker%2Fsyntaxes%2Fdocker.tmLanguage.json&tkn=                                                                                                                                                                                                                                                             | 10692              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fgit-base%2Fsyntaxes%2Fgit-commit.tmLanguage.json&tkn=                                                                                                                                                                                                                                                       | 10684              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fgit-base%2Fsyntaxes%2Fgit-rebase.tmLanguage.json&tkn=                                                                                                                                                                                                                                                       | 10678              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fgo%2Fsyntaxes%2Fgo.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                     | 10672.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fgroovy%2Fsyntaxes%2Fgroovy.tmLanguage.json&tkn=                                                                                                                                                                                                                                                             | 10667              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fpug%2Fsyntaxes%2Fpug.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10662              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjavascript%2Fsyntaxes%2FJavaScript.tmLanguage.json&tkn=                                                                                                                                                                                                                                                     | 10687              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjavascript%2Fsyntaxes%2FRegular%20Expressions%20(JavaScript).tmLanguage&tkn=                                                                                                                                                                                                                                | 10646              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjson%2Fsyntaxes%2FJSON.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10641              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjson%2Fsyntaxes%2FJSONC.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                | 10635              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fless%2Fsyntaxes%2Fless.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10648.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fobjective-c%2Fsyntaxes%2Fobjective-c.tmLanguage.json&tkn=                                                                                                                                                                                                                                                   | 10647.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fswift%2Fsyntaxes%2Fswift.tmLanguage.json&tkn=                                                                                                                                                                                                                                                               | 10642.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fscss%2Fsyntaxes%2Fscss.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10614              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fperl%2Fsyntaxes%2Fperl6.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                | 10609              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fpowershell%2Fsyntaxes%2Fpowershell.tmLanguage.json&tkn=                                                                                                                                                                                                                                                     | 10603.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fpython%2Fsyntaxes%2FMagicPython.tmLanguage.json&tkn=                                                                                                                                                                                                                                                        | 10618              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjulia%2Fsyntaxes%2Fjulia.tmLanguage.json&tkn=                                                                                                                                                                                                                                                               | 10614.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fpython%2Fsyntaxes%2FMagicRegExp.tmLanguage.json&tkn=                                                                                                                                                                                                                                                        | 10587              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Frust%2Fsyntaxes%2Frust.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10579              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fshellscript%2Fsyntaxes%2Fshell-unix-bash.tmLanguage.json&tkn=                                                                                                                                                                                                                                               | 10580              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftypescript-basics%2Fsyntaxes%2FTypeScript.tmLanguage.json&tkn=                                                                                                                                                                                                                                              | 10605.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftypescript-basics%2Fsyntaxes%2FTypeScriptReact.tmLanguage.json&tkn=                                                                                                                                                                                                                                         | 10588.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fcsharp%2Fsyntaxes%2Fcsharp.tmLanguage.json&tkn=                                                                                                                                                                                                                                                             | 10565.000000000004 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ffsharp%2Fsyntaxes%2Ffsharp.tmLanguage.json&tkn=                                                                                                                                                                                                                                                             | 10552              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fdart%2Fsyntaxes%2Fdart.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 10546.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fhandlebars%2Fsyntaxes%2FHandlebars.tmLanguage.json&tkn=                                                                                                                                                                                                                                                     | 10544              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flog%2Fsyntaxes%2Flog.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                   | 10532              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flatex%2Fsyntaxes%2FLaTeX.tmLanguage.json&tkn=                                                                                                                                                                                                                                                               | 10525              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flatex%2Fsyntaxes%2FBibtex.tmLanguage.json&tkn=                                                                                                                                                                                                                                                              | 10516              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-math%2Fsyntaxes%2Fmd-math-block.tmLanguage.json&tkn=                                                                                                                                                                                                                                               | 10515              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-math%2Fsyntaxes%2Fmd-math-inline.tmLanguage.json&tkn=                                                                                                                                                                                                                                              | 10502              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-math%2Fsyntaxes%2Fmd-math-fence.tmLanguage.json&tkn=                                                                                                                                                                                                                                               | 10494              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fmarkdown-svelte.json&tkn=                                                                                                                                                                                                                                  | 10493              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fmarkdown-svelte-js.json&tkn=                                                                                                                                                                                                                               | 10510.999999999996 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fmarkdown-svelte-css.json&tkn=                                                                                                                                                                                                                              | 10492              |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fcpp%2Fsyntaxes%2Fcpp.embedded.macro.tmLanguage.json&tkn=                                                                                                                                                                                                                                                    | 2007               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftypescript-basics%2Fsyntaxes%2Fjsdoc.js.injection.tmLanguage.json&tkn=                                                                                                                                                                                                                                      | 2001               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fscss%2Fsyntaxes%2Fsassdoc.tmLanguage.json&tkn=                                                                                                                                                                                                                                                              | 1995               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Ftypescript-basics%2Fsyntaxes%2Fjsdoc.ts.injection.tmLanguage.json&tkn=                                                                                                                                                                                                                                      | 1987.9999999999927 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flatex%2Fsyntaxes%2FTeX.tmLanguage.json&tkn=                                                                                                                                                                                                                                                                 | 1974.9999999999927 |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flatex%2Fsyntaxes%2Fcpp-grammar-bailout.tmLanguage.json&tkn=                                                                                                                                                                                                                                                 | 1995               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Flatex%2Fsyntaxes%2Fmarkdown-latex-combined.tmLanguage.json&tkn=                                                                                                                                                                                                                                             | 1953               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fmarkdown-math%2Fsyntaxes%2Fmd-math.tmLanguage.json&tkn=                                                                                                                                                                                                                                                     | 1944               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fsvelte.tmLanguage.json&tkn=                                                                                                                                                                                                                                | 2264               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fpython%2Flanguage-configuration.json&tkn=                                                                                                                                                                                                                                                                   | 1438               |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fpostcss.json&tkn=                                                                                                                                                                                                                                          | 897                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fpug-svelte.json&tkn=                                                                                                                                                                                                                                       | 894.0000000000073  |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fpug-svelte-tags.json&tkn=                                                                                                                                                                                                                                  | 888                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsvelte.svelte-vscode-109.5.3-universal%2Fsyntaxes%2Fpug-svelte-dotblock.json&tkn=                                                                                                                                                                                                                              | 880.0000000000073  |
+| https://open-vsx.org/vscode/gallery/extensionquery                                                                                                                                                                                                                                                                                                                                                                                                                                    | 354                |
+| https://open-vsx.org/vscode/gallery/extensionquery                                                                                                                                                                                                                                                                                                                                                                                                                                    | 356                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Froot%2F.local%2Fshare%2Fcode-server%2Fextensions%2Fsourcegraph.cody-ai-1.76.1-universal%2Fresources%2Fcody-icons.woff&tkn=                                                                                                                                                                                                                                        | 519                |
+| https://codeserver.maximusadeola.com/stable-08cbdfbdf11925e8a14ee03de97b942bba7e8a94/vscode-remote-resource?path=%2Fusr%2Flib%2Fcode-server%2Flib%2Fvscode%2Fextensions%2Fjson%2Flanguage-configuration.json&tkn=                                                                                                                                                                                                                                                                     | 468                |
