@@ -74,6 +74,7 @@
         if (Math.random() < 0.1) {
             octave++;
         }
+        if (note == "B#") note = "C"; // Wierd B# issue
         note += octave.toString();
         return note;
     }
@@ -312,7 +313,7 @@
             document.addEventListener("click", soundEffect);
             document.addEventListener("click", () => {
                 elementValues.clickAnim = true;
-                setTimeout(() => {elementValues.clickAnim = false h}, 100)
+                setTimeout(() => {elementValues.clickAnim = false}, 100)
             });
         document.addEventListener("touchstart", soundEffect);
         document.addEventListener("keydown", soundEffect);
