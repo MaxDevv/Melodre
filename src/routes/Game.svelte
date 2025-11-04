@@ -6,9 +6,11 @@
     let pointHistory = $state([]);
     let correctNotes = $state();
     let elementValues = $state({});
+    let pauseTimer = false;
     const allNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#"];
     let noteInputs = [];
     let key = "C Major";
+    let incorrectNote = $state({});
     let previousGames = $state([0]);
     let totalPoints = $derived(pointHistory.reduce((accumulator, currentValue) => accumulator + currentValue, 0));
     // let buff = $state(0);
@@ -102,21 +104,28 @@
         let score = Math.pow(2, buff + (((maxSeq-buff)/maxSeq) * (noteInputs.length * Math.abs(avgDiff - 5) / 5))) * 10
         // console.log(score);
         score = Math.floor(score);
-        
         if (avgDiff == 0) {
             bonusTrigger(20*noteInputs.length, "100% accurate");
             score += 20*noteInputs.length;
+
+            roundReset();
+        } else {
+            // wait 5 seconds so user can play
+            pauseTimer = true;
+            incorrectNote = `Sorry, incorrect, you have to practice it :D`;
         }
         pointHistory.push(score);
         // console.log(pointHistory);
         elementValues.lastCorrectNotes = correctNotes;
         elementValues.lastUserInput = noteInputs;
         // Include sound effects
-        roundReset();
+
 
     }
 
     function roundReset() {
+        incorrectNote = "";
+        pauseTimer = false;
         for (let e of elementValues.noteInputs.children) {
             if (e instanceof HTMLInputElement) {
                 e.value = "";
@@ -239,7 +248,10 @@
 
     onMount(() => {
         setInterval(() => {
-            elementValues.timeLeft -= 0.1;
+            if (!pauseTimer) {
+                elementValues.timeLeft -= 0.1;
+
+            }
             if (elementValues.timeLeft < 0) {
                 if (pointHistory != [] && pointHistory.reduce((accumulator, currentValue) => accumulator + currentValue, 0) > 0) {
                     previousGames.push(pointHistory.reduce((accumulator, currentValue) => accumulator + currentValue, 0));
@@ -432,6 +444,11 @@
         </div>
 
     {/if}
+        {#if incorrectNote != ""}
+            
+            <span>{incorrectNote}</span>
+            <button onclick={roundReset} style="margin-bottom: 1em;">Done :D</button>
+        {/if}
     <div class="noteInputs" bind:this={elementValues.noteInputs}>
 
         {#each correctNotes as note, index}
