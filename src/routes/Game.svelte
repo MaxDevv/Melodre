@@ -6,10 +6,11 @@
     let pointHistory = $state([]);
     let correctNotes = $state();
     let elementValues = $state({});
-    let pauseTimer = false;
+    let pauseGame = false;
     const allNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#"];
     let noteInputs = [];
     let key = "C Major";
+    let renderSettings = $state(false);
     let incorrectNote = $state({});
     let previousGames = $state([0]);
     let totalPoints = $derived(pointHistory.reduce((accumulator, currentValue) => accumulator + currentValue, 0));
@@ -19,6 +20,8 @@
     let maxSeq = $state(5);
     let audioContext;
     let soundBuffer;
+    let enableBonusSFX = $state();
+    let enableHaptics = $state();
     const compliments = [
         "Perfect", "Flawless", "Amazing", "Impressive", "Superb", "Incredible", "Insane",
         "Brilliant", "Outstanding", "Exceptional", "Phenomenal", "Magnificent", "Stellar", 
@@ -111,7 +114,7 @@
             roundReset();
         } else {
             // wait 5 seconds so user can play
-            pauseTimer = true;
+            pauseGame = true;
             incorrectNote = `Sorry, incorrect, you have to practice it :D`;
         }
         pointHistory.push(score);
@@ -125,7 +128,7 @@
 
     function roundReset() {
         incorrectNote = "";
-        pauseTimer = false;
+        pauseGame = false;
         for (let e of elementValues.noteInputs.children) {
             if (e instanceof HTMLInputElement) {
                 e.value = "";
@@ -228,7 +231,8 @@
     });
 }
 
-    function soundEffect() {
+    function hapticSoundEffect() {
+        if (!enableHaptics) return;
         console.log("sfx");
         
         playSound();
@@ -243,12 +247,14 @@
             elementValues.bonus = false;
             elementValues.bonusMessage = undefined;
         }, 2000);
-        elementValues.bonusSfx.play();
+        if (enableBonusSFX) {
+            elementValues.bonusSfx.play();
+        }
     }
 
     onMount(() => {
         setInterval(() => {
-            if (!pauseTimer) {
+            if (!pauseGame) {
                 elementValues.timeLeft -= 0.1;
 
             }
@@ -265,7 +271,9 @@
 
 
             elementValues.timerEnding = ((0 < elementValues.timeLeft) && (elementValues.timeLeft < 10));
-
+            if (!pauseGame) {
+                elementValues.submitButton = false;
+            }
             }, 100);
         /* setInterval(() => {
             compliment = compliments[Math.floor(Math.random()*compliments.length)];
@@ -322,14 +330,34 @@
             .catch(error => {
                 console.error('Error loading sound effect:', error);
             });
-            document.addEventListener("click", soundEffect);
+            document.addEventListener("click", hapticSoundEffect);
             document.addEventListener("click", () => {
                 elementValues.clickAnim = true;
                 setTimeout(() => {elementValues.clickAnim = false}, 100)
             });
-        document.addEventListener("touchstart", soundEffect);
-        document.addEventListener("keydown", soundEffect);
-        // document.addEventListener("keyup", soundEffect);
+        document.addEventListener("touchstart", hapticSoundEffect);
+        document.addEventListener("keydown", hapticSoundEffect);
+        // document.addEventListener("keyup", hapticSoundEffect);
+
+
+        if (localStorage.getItem('settings') == null) {
+            localStorage.setItem('settings', JSON.stringify({
+                enableHaptics: true,
+                enableBonusSFX: true
+            }));
+        }
+        let settings = JSON.parse(localStorage.getItem("settings"));
+        enableHaptics = settings.enableHaptics;
+        enableBonusSFX = settings.enableBonusSFX;
+        $effect(() => {
+            localStorage.setItem('settings', JSON.stringify({
+                enableHaptics: enableHaptics,
+                enableBonusSFX: enableBonusSFX
+            }));
+
+        });
+        renderSettings = true;
+
     })
 </script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -411,6 +439,18 @@
         <h4>High Score: {Math.max(...previousGames)} Points</h4>
         <h4>Total Score: {previousGames.reduce((accumulator, currentValue) => accumulator + currentValue, 0)}</h4>
         <button onclick={fullGameReset}>New Game</button>
+        {#if renderSettings}
+            
+        <details  class="miniSettings"><div>
+            <input type="checkbox" name="" id="toggleClickHaptics" bind:checked={enableHaptics}>
+            <label for="toggleClickHaptics">Enable/Disable Click Haptics/Sounds</label>
+            <br>
+            <input type="checkbox" name="" id="toggleBonusSFX" bind:checked={enableBonusSFX}>
+            <label for="toggleBonusSFX">Enable/Disable Bonus Sounds</label>
+        </div>
+         <summary>Settings:</summary></details>
+        {/if}
+        
     </div>
 {/if}
 <div class="mainContainer">
@@ -668,6 +708,20 @@
             background: transparent;
             border: none;
             font-weight: bolder;
+        }
+        
+        .miniSettings {
+            padding-top: 1.5em;
+            summary {
+                font-size: larger;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            div {
+                padding-left: 1.5em;
+            }
+
+
         }
     }
     .mainContainer {
