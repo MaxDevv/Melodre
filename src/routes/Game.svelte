@@ -271,7 +271,7 @@
 
 
             elementValues.timerEnding = ((0 < elementValues.timeLeft) && (elementValues.timeLeft < 10));
-            if (!pauseGame) {
+            if (pauseGame) {
                 elementValues.submitButton = false;
             }
             }, 100);
