@@ -106,7 +106,7 @@
         // 0=< avgDiff =< 5 always true
         let score = Math.pow(2, buff + (((maxSeq-buff)/maxSeq) * (noteInputs.length * Math.abs(avgDiff - 5) / 5))) * 10
         // console.log(score);
-        score = Math.floor(score);
+        score = Math.floor(score ? score : 0);
         if (avgDiff == 0) {
             bonusTrigger(20*noteInputs.length, "100% accurate");
             score += 20*noteInputs.length;
@@ -310,7 +310,7 @@
             localStorage.setItem('previousGames', JSON.stringify([0]));
         }
         previousGames = JSON.parse(localStorage.getItem("previousGames"));
-
+        previousGames = previousGames.map((a, b , c) => {return (a ? a : 0)});
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         // Store the loaded audio buffer
         soundBuffer = null;
