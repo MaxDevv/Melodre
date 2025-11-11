@@ -254,7 +254,7 @@
 
     onMount(() => {
         setInterval(() => {
-            if (pauseGame) {
+            if (!pauseGame) {
                 elementValues.timeLeft -= 0.1;
 
             }
