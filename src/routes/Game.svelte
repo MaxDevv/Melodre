@@ -310,7 +310,6 @@
             localStorage.setItem('previousGames', JSON.stringify([0]));
         }
         previousGames = JSON.parse(localStorage.getItem("previousGames"));
-        previousGames = previousGames.map((a, b , c) => {return (a ? a : 0)});
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         // Store the loaded audio buffer
         soundBuffer = null;
