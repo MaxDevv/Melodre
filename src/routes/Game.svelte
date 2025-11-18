@@ -7,7 +7,7 @@
     let correctNotes = $state();
     let elementValues = $state({});
     let pauseGame = false;
-    const allNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#"];
+    const allNotes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#"]; 
     let noteInputs = [];
     let key = "C Major";
     let renderSettings = $state(false);
@@ -51,8 +51,11 @@
             e.target.value = ""
         }
         
-        if (e.target.value[1] && !["#", "b"].includes(e.target.value[1])) {
+        if (e.target.value[1] && !["#", "b", "3"].includes(e.target.value[1])) {
             e.target.value = e.target.value[0];
+        }
+        if (e.target.value[1] == "3") {
+            e.target.value = e.target.value[0] + "#";
         }
     }
 
@@ -62,8 +65,11 @@
         filterNotes(e);
         updateNoteInputs();
         elementValues.submitButton = noteInputs.every(Boolean);
+        console.log(e.key);
         if (e.key == "Enter" && elementValues.submitButton) {
             submitCheck();
+        } else if (["Enter", " "/* Spacebar */].includes(e.key)) {
+            e.target.nextElementSibling.focus();
         }
     }
     function randomNote(accidentalChance=0.2) {
