@@ -1,7 +1,19 @@
 <script>
+    // for my sanity
+    console.log = (function(originalLog) {
+  return function(...args) {
+    originalLog.apply(console, args.map(arg => {
+      try {
+        return JSON.stringify(arg, null, 2);
+      } catch (e) {
+        return String(arg);
+      }
+    }));
+  };
+})(console.log);
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
-    import { Interval, Scale } from "tonal";
+    import { interval, Interval, Scale, Note, note } from "tonal";
     import * as Tone from "tone";
     let pointHistory = $state([]);
     let correctNotes = $state();
@@ -30,6 +42,34 @@
         "Astonishing", "Marvelous", "Splendid", "Dazzling", "Epic"
     ];
     let compliment = $state(compliments[0]);
+    
+    let struggleIntervals = {
+        "1" /* interval */: 0 /* priorotization */,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "-1": 0,
+        "-2": 0,
+        "-3": 0,
+        "-4": 0,
+        "-5": 0,
+        "-6": 0,
+        "-7": 0,
+        "-8": 0,
+        "-9": 0,
+        "-10": 0,
+        "-11": 0,
+        "-12": 0
+    }
+
     elementValues.timeLeft = -1;
     
     elementValues.hideMenu = !true;
@@ -72,43 +112,114 @@
             e.target.nextElementSibling.focus();
         }
     }
-    function randomNote(accidentalChance=0.2) {
+    function randomNote(lastNote="", accidentalChance=0.2, struggleChance=0.3) {
         let note = Scale.get(key).notes[Math.floor(Math.random()*7)];
         // console.log(note, Scale.get(key));
-        if (Math.random() < 0.2) {
-            note += "#";
+        if (Math.random() < accidentalChance) {
+            note += "#"; 
         }
-        let octave = 4
-        if (Math.random() < 0.4) {
-            octave++;
+        
+        let rand = Math.random();
+        // console.log(`lastNote, rand, struggleChance`);
+        // console.log(lastNote, rand, struggleChance);
+        if (lastNote && rand < struggleChance) {
+            // Select interaval
+            let totalStruggle = Object.values(struggleIntervals).reduce((partialSum, a) => a > 0 ? partialSum + a : partialSum, 0);
+            
+            if (totalStruggle <= 0) {
+                return randomNote(lastNote, accidentalChance, 0);
+            }
+            let index = Math.floor(Math.random() * totalStruggle) + 1;
+            let accumulator = 0;
+            // console.log(`console.log("Selecting struggle note", totalStruggle, index, accumulator)`);
+            // console.log("Selecting struggle note", totalStruggle, index, accumulator);
+            for (const [key, value] of Object.entries(struggleIntervals).sort((a, b) => {return b[1] - a[1]})) {
+                accumulator += value;
+                console.log(`accumulator, value`);
+                console.log(accumulator, value);
+                if (accumulator >= index) {
+                    // console.log("Accumulator >= index!!!");
+                    // console.log(`console.log(key, value, accumulator, index)`);
+                    // console.log(key, value, accumulator, index);
+                    // console.log(`totalStruggle, struggleIntervals`);
+                    // console.log(totalStruggle, struggleIntervals);
+                    // console.log( `lastNote, Note.transpose(lastNote, Interval.fromSemitones(parseInt(key)))`);
+                    // console.log(lastNote, Note.transpose(lastNote, Interval.fromSemitones(parseInt(key))));
+                    let octave = parseInt(Note.transpose(lastNote, Interval.fromSemitones(parseInt(key))).toString().slice(-1));
+                    console.log("Octave", octave);
+                    if (2 > octave || 7 < octave) break;
+                    return Note.transpose(lastNote, Interval.fromSemitones(parseInt(key)));
+                }
+            }
+            // ts code will be so illegible lol
+            return randomNote(lastNote, accidentalChance, 0); // saftey so no undefineds
+            
+
+        } else {
+            let octave = 4;
+            if (Math.random() < 0.4) {
+                octave++;
+            }
+            if (Math.random() < 0.1) {
+                octave++;
+            }
+            if (note == "B#") note = "C"; // Wierd B# issue
+            note += octave.toString();
+            return note;
         }
-        if (Math.random() < 0.1) {
-            octave++;
-        }
-        if (note == "B#") note = "C"; // Wierd B# issue
-        note += octave.toString();
-        return note;
     }
+
     function randomNotes(len = (2 + Math.round(Math.random()*(maxSeq-2)))) {
         let notes = [];
         for (let i = 0; i < len; i++) {
-            notes.push(randomNote());
+            notes.push(randomNote(i > 0 ? notes[i - 1] : ""));
         }
-        // console.log(notes);
+        // another type of fix for the buggy notes
+        notes.forEach(selectedNote => {
+            if (!selectedNote) {
+                console.log("Buggy sequence", notes, "resetting");
+                return randomNotes(len);
+            }
+        });
+        console.log("Cleared sequence", notes);
         return notes;
     }
     function submitCheck(e = undefined) {
         let earnedPoints = 0;
         let avgDiff = 0;
+        let diffs = Array(noteInputs.length);
+        let diff;
+
         // increase points by accuracy exponentially
         for (let i = 0; i < noteInputs.length; i++) {
             // console.log(correctNotes.slice(0, -1));
-            avgDiff += Math.min(
+            diff = Math.min(
                 Math.abs(Interval.semitones(Interval.simplify(Interval.distance(noteInputs[i].toLowerCase()+"3", correctNotes[i].slice(0, -1).toLowerCase()+"4")))),
                 Math.abs(Interval.semitones(Interval.simplify(Interval.distance(noteInputs[i].toLowerCase()+"4", correctNotes[i].slice(0, -1).toLowerCase()+"4")))),
                 Math.abs(Interval.semitones(Interval.simplify(Interval.distance(noteInputs[i].toLowerCase()+"5", correctNotes[i].slice(0, -1).toLowerCase()+"4")))),
-            )/noteInputs.length;
+            )
+            diffs[i] = [diff, correctNotes[i], i]; // Octave doesnt really matter, just record the current note and default all the ocatves to fourth
+            avgDiff += diff/noteInputs.length;
+        }           
+
+        console.log("StruggleIntervals Before:", struggleIntervals);
+        // Classify Struggling intervals
+        for (let interval of  diffs.sort((a, b) => b[0] - a[0])) { 
+            // console.log(Interval.distance(interval[1], diffs[interval[2]][1]));
+            if (interval[2] == 0) continue; 
+            let previousInterval = diffs.find((q) => {return (interval[2] - 1) == q[2];}); // holy Jank COde
+
+            console.log(previousInterval[1], interval[1], interval[0], Interval.semitones(Interval.distance(previousInterval[1], interval[1])));
+            if (!struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()]) {
+                struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()] = 0;
+            }
+            if (interval[0] > 0) {
+                struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()] += interval[0]/2;
+            } else {
+                struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()] -= 1.25;
+            }
         }
+        console.log("StruggleIntervals After:", struggleIntervals);
         // 0=< avgDiff =< 5 always true
         let score = Math.pow(2, buff + (((maxSeq-buff)/maxSeq) * (noteInputs.length * Math.abs(avgDiff - 5) / 5))) * 10
         // console.log(score);
