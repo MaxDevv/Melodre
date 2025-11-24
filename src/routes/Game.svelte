@@ -1,16 +1,17 @@
+
 <script>
     // for my sanity
     console.log = (function(originalLog) {
-  return function(...args) {
-    originalLog.apply(console, args.map(arg => {
-      try {
-        return JSON.stringify(arg, null, 2);
-      } catch (e) {
-        return String(arg);
-      }
-    }));
-  };
-})(console.log);
+    return function(...args) {
+        originalLog.apply(console, args.map(arg => {
+        try {
+            return JSON.stringify(arg, null, 2);
+        } catch (e) {
+            return String(arg);
+        }
+        }));
+    };
+    })(console.log);
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
     import { interval, Interval, Scale, Note, note } from "tonal";
@@ -185,12 +186,17 @@
         return notes;
     }
     function submitCheck(e = undefined) {
-        let earnedPoints = 0;
-        let avgDiff = 0;
-        let diffs = Array(noteInputs.length);
-        let diff;
+         let earnedPoints = 0;
+         let avgDiff = 0;
+         let diffs = Array(noteInputs.length);
+         let diff;
+         
+         let timeSpent = (Date.now() - (elementValues.startTime || Date.now())) / 1000;
+         // Calculate struggle increase per interval: longer time = more struggle, longer sequence = less struggle per note
+         // 30s on 4 notes ~ 0.75. 30s on 7 notes ~ 0.4.
+         let timePenalty = (timeSpent / Math.max(1, noteInputs.length)) * 0.1;
 
-        // increase points by accuracy exponentially
+         // increase points by accuracy exponentially
         for (let i = 0; i < noteInputs.length; i++) {
             // console.log(correctNotes.slice(0, -1));
             diff = Math.min(
@@ -203,22 +209,40 @@
         }           
 
         console.log("StruggleIntervals Before:", struggleIntervals);
-        // Classify Struggling intervals
-        for (let interval of  diffs.sort((a, b) => b[0] - a[0])) { 
-            // console.log(Interval.distance(interval[1], diffs[interval[2]][1]));
-            if (interval[2] == 0) continue; 
-            let previousInterval = diffs.find((q) => {return (interval[2] - 1) == q[2];}); // holy Jank COde
+         // Classify Struggling intervals
+         for (let interval of  diffs.sort((a, b) => b[0] - a[0])) { 
+             // console.log(Interval.distance(interval[1], diffs[interval[2]][1]));
+             if (interval[2] == 0) continue; 
+             let previousInterval = diffs.find((q) => {return (interval[2] - 1) == q[2];}); // holy Jank COde
 
-            console.log(previousInterval[1], interval[1], interval[0], Interval.semitones(Interval.distance(previousInterval[1], interval[1])));
-            if (!struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()]) {
-                struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()] = 0;
-            }
-            if (interval[0] > 0) {
-                struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()] += interval[0]/2;
-            } else {
-                struggleIntervals[(Interval.semitones(Interval.distance(previousInterval[1], interval[1]))).toString()] -= 1.25;
-            }
-        }
+             let targetDist = Interval.semitones(Interval.distance(previousInterval[1], interval[1]));
+             let key = targetDist.toString();
+
+             console.log(previousInterval[1], interval[1], interval[0], targetDist);
+             
+             if (!struggleIntervals[key]) {
+                 struggleIntervals[key] = 0;
+             }
+
+             // 1. Add time-based struggle to this interval regardless of correctness
+             struggleIntervals[key] += timePenalty;
+
+             // 2. Check for Shifted Intervals (Right relative interval, wrong absolute notes)
+             // Reconstruct rough input notes at octave 4 to check relative distance
+             let userPrev = noteInputs[previousInterval[2]] + "4";
+             let userCurr = noteInputs[interval[2]] + "4";
+             let userDist = Interval.semitones(Interval.distance(userPrev, userCurr));
+             let relativeMatch = userDist === targetDist;
+
+             if (interval[0] > 0) {
+                 // Only count as struggle if they also got the relative interval wrong
+                 if (!relativeMatch) {
+                     struggleIntervals[key] += interval[0]/2;
+                 }
+             } else {
+                 struggleIntervals[key] -= 1.25;
+             }
+         }
         console.log("StruggleIntervals After:", struggleIntervals);
         // 0=< avgDiff =< 5 always true
         let score = Math.pow(2, buff + (((maxSeq-buff)/maxSeq) * (noteInputs.length * Math.abs(avgDiff - 5) / 5))) * 10
@@ -255,6 +279,7 @@
         setTimeout(() => {
             elementValues.alreadyPlayed = false;
             correctNotes = randomNotes();
+            elementValues.startTime = Date.now(); // Track time for struggle calc
             playNotes(correctNotes)
         }, 200);
         setTimeout(() => {
